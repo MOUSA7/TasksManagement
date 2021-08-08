@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css?family=Lateef');
+/* font-family: 'Lateef', cursive; */
+@import url('https://fonts.googleapis.com/css?family=Oswald:700');
+/* font-family: 'Oswald', sans-serif; */
+body{
+    font-family: 'Droid Arabic Kufi', sans-serif !important;
+    background:  #d3d3d3 ;
+    padding: 0px;
+    margin: 0px;
+    font-size: 18px;
+}
+/*max height*/
+.h-25{
+    overflow: hidden !important;
+}
+.list-group-item{
+    max-height: 94px;
+    overflow: auto !important;
+}
+.list-group-item::-webkit-scrollbar ,.card-body::-webkit-scrollbar{
+    width: 1em;
+}
+
+.list-group-item::-webkit-scrollbar-track ,.card-body::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px transparent;
+}
+.newspage .card-body{
+    padding: 0px;
+    height: 120px;
+    overflow: auto !important;
+}
+.newspage .type{
+    border-right: 3px solid green;
+    padding-right: 5px;
+}
+ .card-body{
+     padding: 0px;
+     height: 94px;
+     overflow: auto !important;
+ }
+.list-group-item::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  outline: 1px solid transparent;
+}
+
+/*end max height*/
+/*slider*/
+.main-slider{
+    height: 150px;
+    background: rgb(255, 255, 255);
+    z-index: 20;
+}
+.slick-slider{
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    background: rgb(255, 255, 255);
+
+}
+.slick-next::before,.slick-prev:before{
+    color: #000;
+    font-size: 2px;
+    padding: 0px;
+    background: #fff5;
+    border-radius: 20px;
+}
+.slick-next::before{
+    content: '>';
+}
+.slick-prev:before{
+    content: '<';
+}
+.slick-prev{
+    left: 0px;
+}
+.iteam{
+    text-align: center;
+    line-height: 300px;
+    z-index: 100;
+    width: 300px;
+    position: relative !important;
+    border: 1px solid #fff;
+}
+.time-news{
+    text-align: end;
+    padding-right: 0px;
+    background: #000c19;
+    width: 100%;
+    color: #fff;
+    margin-top: 25px;
+    margin-bottom: 0px;
+    height: 50px;
+    font-size: 26px;
+    line-height: 50px;
+    border: 2px solid rgba(0, 0, 0, 0.205);
+}
+.program-title{
+    background: rgba(40, 3, 204, 0.801);
+    color: #fff;
+    height: 50px;
+    line-height: 40px;
+    width: 50%;
+    position: absolute;
+    bottom: 0px;
+    font-weight: bold;
+}
+/*end slider*/
+/*all program*/
+.program-container{
+    position: relative;
+}
+.program-container p{
+    position: absolute;
+    bottom: -20px;
+    height: 60px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #fff3, #000);
+    color: #fff;
+    width: 100%;
+    line-height: 60px;
+    text-align: center;
+}
+/*end all program*/
+@media (min-width: 1200px)
+{
+    .container {
+        max-width: 1383px;
+    }
+}
+.search {
+    width: 100%;
+    text-align: left;
+}
+a{
+    text-decoration: none !important;
+    color: #000;
+}
+.gray{
+    background: #b0b4c4;
+}
+.black{
+    background: #000;
+}
+.white{
+    background: #fff;
+}
+.blue{
+    background:#2d59ba;
+}
+.red{
+    background: red;
+}
+.text-black{
+    color: #000;
+}
+.text-white{
+    color: #fff;
+}
+.text-blue{
+    color: rgb(18, 20, 128);
+}
+
+.logo{
+    height: 170px;
+    background: #022f66;
+
+}
+.nav-bg-color{
+    background: #fff;
+    border-bottom: 3px solid #a2a2a2;
+
+}
+.logo img{
+    animation: changelogo 10s linear  infinite alternate;
+}
+.logo-text{
+    font-weight: bold;
+    animation: changelogotext 10s linear  infinite alternate;
+}
+.search,.close-search{
+    cursor: pointer;
+}
+.full-search{
+    display: none;
+}
+.nav-item{
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+    position: relative;
+}
+.nav-link{
+    color: #000 !important;
+    font-size: 18px !important;
+    font-weight: 400;
+    padding: 0px;
+    padding: 0px 20px 0px 20px !important;
+}
+.nav-link{
+    border-left: 1px solid #0005 !important;
+}
+.show-link{
+    position: absolute;
+    top: 0px; left: 0px;
+    height: 100%;
+    display: block;
+    width: 100%;
+}
+.mm .show-link{
+    background: #0008;
+}
+.nn .show-link{
+    background: #ffa50085;
+}
+.pp .show-link{
+    background: #6d00999e;
+}
+.aa .show-link{
+    background: transparent;
+}
+.aa .show-link:hover{
+    background: rgba(0, 128, 0, 0.685);
+}
+.ll .show-link{
+    background: #033affb8;
+}
+.xx .show-link{
+    background: #ff0000b0;
+}
+.bb .show-link{
+    background: #a5040475;
+}
+.cc .show-link{
+    background: #ee33ff60;
+}
+.dd .show-link{
+    background: #3505d35e;
+}
+.vv .show-link{
+    background: #05d37d5e;
+}
+.change-bg{
+    position: fixed;
+    top: 300px;
+
+}
+.togg-position{
+    right: -120px;
+    border-radius: 10px;
+}
+.change-black{
+    border-radius: 10px;
+}
+.fa-globe{
+    position: absolute;
+    top: 0px;
+}
+.chose-bg{
+    margin-left: 50px;
+    height: 200px;
+    width: 70px;
+    background: #022f66;
+    display: inline-block;
+}
+.live{
+    position: relative;
+    top: 26px;
+    width: 200px;
+    height: 150px;
+}
+.fa-tv{
+    animation: changelive 10s linear  infinite alternate;
+}
+/* main news*/
+.main-news{
+    position: relative;
+}
+.img-main-news{
+    overflow: hidden;
+}
+.img-main-news img{
+    transition: all 0.5s linear;
+}
+.img-main-news:hover img{
+
+    transform: scale(1.1);
+}
+.main-news-body{
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to top,#000,transparent );
+    color: #fff;
+    bottom: -0px;
+}
+.Advertisement{
+    height: 50px;
+     width: 100%;
+      background: #00000042;
+      line-height: 50px;
+      font-size: 30px;
+}
+.Advertisement-title{
+    height: 200px;
+    background: #fff;
+    width: 100%;
+    margin-bottom: 20px;
+}
+li.list-group-item{
+    font-size: 0.7em;
+    overflow: hidden;
+}
+.list-group-item img{
+  padding-left: 8px;
+}
+.list-Latest-news-title{
+    position: relative;
+    background: #022f66;
+    color: #fff !important;
+    right: -8px;
+    padding:5px;
+    width: 50%;
+    border-right: 5px solid #022f66;
+    margin-right: 20px;
+    transition: all 1s linear;
+}
+.list-Latest-news-title.twiter{
+    position: relative;
+    background: #022f66;
+    color: #fff !important;
+    right: -8px;
+    padding:5px;
+    width: 50%;
+    border-right: 5px solid #22b1db;
+    margin-right: 20px;
+    transition: all 1s linear;
+}
+.list-Latest-news-title a{
+    text-decoration: none;
+}
+.list-Latest-news-title:hover{
+width: calc(100% );
+background: #02a000c7;
+border-right: 3px solid #02a000c7;
+}
+.full-background{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+.list-Latest-news-title::after{
+    content: " ";
+    border-left: 11px solid #09182b;
+    border-bottom: 10px solid  transparent;
+    position: absolute;
+    right: -6;
+    bottom: -10px;
+
+}
+.list-Latest-news-title.twiter::after{
+    content: " ";
+    border-left: 11px solid #22b1db;
+    border-bottom: 10px solid  transparent;
+    position: absolute;
+    right: -6;
+    bottom: -10px;
+
+}
+.card-text{
+    font-size: 12px;
+}
+footer{
+    font-size: 14px !important;
+}
+footer ul li a{
+    color: #082635c7;
+}
+footer .contact{
+    width: 100%;
+    text-align: center;
+}
+footer .contact li{
+    text-align: center;
+
+    margin: auto;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 30px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 50%;
+    float: right;
+}
+footer .contact a{
+    color: #fff;
+
+
+}
+.card{
+    margin-bottom: 15px !important;
+}
+
+/****************************************/
+@media(max-width: 880px) {
+    .live{width: 0px; overflow: hidden;}
+    }
+@keyframes changelive{
+    25% {font-size: 35px;}
+    50% {font-size: 30px;}
+    100% {font-size: 35px;}
+}
+@keyframes changelogo {
+    10%  {margin-top: 0px; }
+    25%  { margin-top: 10px; }
+    50%  {  margin-top: 0px;}
+    75%  { margin-top: 10px;}
+    100% {transform: scale(1.2);}
+}
+@keyframes changelogotext {
+    10%  {text-shadow: 0px 10px 10px #000;}
+    25%  {text-shadow: 0px 10px 10px #fff;}
+    50%  {text-shadow: 0px 10px 10px #000;}
+    75%  {text-shadow: 0px 10px 10px #fff;}
+    100% {text-shadow: 0px 10px 10px #000;}
+}
+
