@@ -21,7 +21,7 @@ Auth::routes();
 
 
 Route::get('categories',[\App\Http\Controllers\CategoryController::class,'index'])->name('admin.categories.index');
-Route::get('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('admin.categories.store');
+Route::get('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('admin.categories.create');
 Route::post('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('admin.categories.store');
 
 Route::get('categories/{id}/edit',[\App\Http\Controllers\CategoryController::class,'edit'])->name('admin.categories.edit');
@@ -32,11 +32,11 @@ Route::POST('categories/delete/{id}', [\App\Http\Controllers\CategoryController:
 
 Route::get('/categories/{slug}',[\App\Http\Controllers\CategoryController::class,'show'])->name('admin.categories.show');
 
-Route::get('tasks',[\App\Http\Controllers\TaskController::class,'index'])->name('admin.tasks.index');
-Route::get('tasks/create',[\App\Http\Controllers\TaskController::class,'create'])->name('admin.tasks.create');
-Route::post('tasks/create',[\App\Http\Controllers\TaskController::class,'store'])->name('admin.tasks.store');
-Route::get('tasks/{id}/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('admin.tasks.edit');
-Route::post('tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('admin.tasks.update');
-Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('admin.tasks.destroy');
+Route::get('admin/tasks',[\App\Http\Controllers\TaskController::class,'index'])->name('admin.tasks.index');
+Route::get('admin/tasks/{task}',[\App\Http\Controllers\TaskController::class,'create'])->name('admin.tasks.create');
+Route::post('admin/tasks/{task}',[\App\Http\Controllers\TaskController::class,'store'])->name('admin.tasks.store');
+Route::get('admin/tasks/{id}/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('admin.tasks.edit');
+Route::PUT('admin/tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('admin.tasks.update');
+Route::get('admin/tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('admin.tasks.destroy');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

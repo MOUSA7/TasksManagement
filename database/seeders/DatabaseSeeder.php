@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Task;
 use App\Models\User;
+use Database\Factories\TaskFactory;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -19,18 +21,12 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $categories = ['Meeting Task','Meeting Normal'];
+        $categories = ['Meeting Task','Meeting Normal','Meeting Agent'];
         foreach ($categories as $key=>$name){
             Category::create(['name'=>$name,'slug'=>Str::slug($name)]);
         }
 
-        Task::create([
-           'name' => 'First Task',
-            'description'=>'Welcome To Description Content',
-            'category_id'=>rand(1,3),
-            'time'=> date('h:i:s'),
-            'date'=> date(date(now())),
-        ]);
+       Task::factory(10)->create();
 
         User::create([
             'name' => 'mousa',

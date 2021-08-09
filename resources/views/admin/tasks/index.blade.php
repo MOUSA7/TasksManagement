@@ -27,17 +27,25 @@
                     <th>Time</th>
                     <th>Description</th>
                     <th>Category</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($tasks as $key=>$task)
                 <tr>
-                    <td>183</td>
-                    <td>John Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-success">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    <td>{{$key +1}}</td>
+                    <td>{{$task->name}}</td>
+                    <td>{{$task->date}}</td>
+                    <td>{{$task->time}}</td>
+                    <td>{{Str::limit($task->description,30)}}</td>
+                    <td>{{$task->category ? $task->category->name:'Not Found'}}</td>
+                    <td>
+                        <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-xs btn-primary">Edit</a>
+                        <a href="{{url('admin/tasks/'.$task->id.'/delete')}}" class="btn btn-xs btn-danger">Delete</a>
+                        <a href="" class="btn btn-xs btn-info">Show</a>
+                    </td>
                 </tr>
-
+                @endforeach
                 </tbody>
             </table>
         </div>

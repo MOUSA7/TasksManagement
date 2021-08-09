@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blank Page</title>
+    <title>Management Tasks</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -108,7 +108,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../widgets.html" class="nav-link">
+                        <a href="{{route('admin.categories.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>Categories
                                 <span class="right badge badge-danger">New</span>
@@ -126,7 +126,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('admin.tasks.index')}}" class="nav-link">
                                     <i class="fas fa-tasks"></i>
                                     <p>Display Tasks</p>
                                 </a>

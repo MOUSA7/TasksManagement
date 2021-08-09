@@ -15,12 +15,22 @@ class TaskController extends Controller
         return view('admin.tasks.index',compact('tasks'));
     }
 
-    public function create(){
-        return view('admin.tasks.create');
+    public function create($slug){
+        $category = Category::whereSlug($slug)->first();
+        return view('admin.tasks.create',compact('category'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request,$slug){
+        $cat = Category::where('slug',$slug)->first();
 
+        $cat->tasks()->create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'time' => $request->time,
+            'date' => $request->date,
+            'category_id' => $cat->id,
+        ]);
+        return redirect()->route('admin.categories.show',$slug);
     }
 
     public function edit($id){
@@ -29,6 +39,23 @@ class TaskController extends Controller
     }
 
     public function update(Request $request,$id){
+        $task = Task::findOrFail($id);
 
+//        dd($task->category->id);
+        $task->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'time' => $request->time,
+            'date' => $request->date,
+            'category_id' => $task->category->id
+        ]);
+
+        return redirect()->route('admin.categories.show',$task->category->slug);
+    }
+
+    public function destroy($id){
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->back();
     }
 }
