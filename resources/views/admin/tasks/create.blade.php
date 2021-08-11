@@ -29,24 +29,48 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="">Name : </label>
-                                        <input type="text" name="name"  class="form-control">
+                                        <input type="text" name="name"  class="form-control @error('name') is-invalid @enderror">
+
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Date : </label>
-                                        <input type="date" name="date" class="form-control">
+                                        <input type="date" name="date" class="form-control @error('date') is-invalid @enderror">
+                                        @error('date')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
+
                                 <div class="col-sm-6">
+
                                     <div class="form-group">
                                         <label for="">Time</label>
-                                        <input type="time"  name="time" class="form-control">
+                                        <input type="time"  name="time" class="form-control @error('time') is-invalid @enderror">
+                                        @error('time')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Description :</label>
-                                        <textarea name="description" class="form-control"></textarea>
+                                        <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
+                                        @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
+
                                 </div>
                             </div>
                         </div>

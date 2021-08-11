@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             Category::create(['name'=>$name,'slug'=>Str::slug($name)]);
         }
 
-       Task::factory(10)->create();
+       Task::factory(5)->create();
 
         User::create([
             'name' => 'mousa',

@@ -110,11 +110,9 @@
             $.post("categories/create",data).done(function (data) {
                 $("#create").modal("hide");
                 $("#categories").replaceWith(data);
-
             });
         });
         $(document).on('click','.edit',function () {
-
             var id = $(this).data("id");
             $.get("categories/"+id+"/edit").done(function (data) {
                 $("#editModal").replaceWith(data);

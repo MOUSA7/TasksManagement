@@ -19,7 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('tasks',[\App\Http\Controllers\TaskApiController::class,'index']);
+Route::get('tasks/create',[\App\Http\Controllers\TaskApiController::class,'create']);
 Route::post('tasks/{slug}',[\App\Http\Controllers\TaskApiController::class,'store']);
 Route::put('tasks/{id}/update',[\App\Http\Controllers\TaskApiController::class,'update']);
 Route::delete('tasks/{id}/delete',[\App\Http\Controllers\TaskApiController::class,'delete']);
 Route::get('tasks/{id}/show',[\App\Http\Controllers\TaskApiController::class,'show']);
+
+
+Route::get('categories',[\App\Http\Controllers\CategoryApiController::class,'index']);
+Route::get('category/{slug}',[\App\Http\Controllers\CategoryApiController::class,'show']);

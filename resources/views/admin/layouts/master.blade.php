@@ -134,6 +134,13 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('logout')}}" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -165,7 +172,7 @@
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.1.0
         </div>
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>BioClean Company&copy; 1978-2021 <a href="https://adminlte.io">BIO ClEAN</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->

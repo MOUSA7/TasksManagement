@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('dashboard');
     }
 
     /**
@@ -24,5 +25,16 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function dashboard(){
+        return view('admin.index');
+    }
+
+    public function logout(){
+        if (\auth()->check()){
+            Auth::logout();
+            return redirect('/login');
+        }
     }
 }

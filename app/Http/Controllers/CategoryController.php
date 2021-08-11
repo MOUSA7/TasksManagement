@@ -15,6 +15,9 @@ class CategoryController extends Controller
 
     public function store(Request $request){
 
+        $this->validate($request,[
+            'name' => 'required',
+        ]);
         $category = new Category();
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
@@ -28,6 +31,9 @@ class CategoryController extends Controller
         return view('admin.categories.edit',compact('category'));
     }
     public function update(Request $request,$id){
+        $this->validate($request,[
+            'name' => 'required'
+        ]);
         $category = Category::find($id);
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);

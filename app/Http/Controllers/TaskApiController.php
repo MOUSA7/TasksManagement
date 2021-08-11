@@ -17,10 +17,18 @@ class TaskApiController extends Controller
     }
 
     public function create($slug){
+//        $cat = Category::whereSlug($slug)->first();
+//        return response()->json($cat);
 //        $task = Category::whereSlug('slug',$slug)->first();
     }
 
     public function store(Request $request,$slug){
+        $this->validate($request,[
+            'name' => 'required',
+            'description'=>'required',
+            'time'=>'required',
+            'date'=>'required'
+        ]);
         $cat = Category::where('slug',$slug)->first();
 
         $task = $cat->tasks()->create([
@@ -42,7 +50,12 @@ class TaskApiController extends Controller
 
     public function update(Request $request,$id){
         $task = Task::find($id);
-
+        $this->validate($request,[
+            'name' => 'required',
+            'description'=>'required',
+            'time'=>'required',
+            'date'=>'required'
+        ]);
         $task->update([
             'name' => $request->name,
             'description' => $request->description,

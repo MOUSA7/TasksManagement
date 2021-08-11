@@ -21,6 +21,12 @@ class TaskController extends Controller
     }
 
     public function store(Request $request,$slug){
+        $this->validate($request,[
+            'name' => 'required',
+            'description'=>'required',
+            'time'=>'required',
+            'date'=>'required'
+        ]);
         $cat = Category::where('slug',$slug)->first();
 
         $cat->tasks()->create([
@@ -40,7 +46,12 @@ class TaskController extends Controller
 
     public function update(Request $request,$id){
         $task = Task::findOrFail($id);
-
+        $this->validate($request,[
+            'name' => 'required',
+            'description'=>'required',
+            'time'=>'required',
+            'date'=>'required'
+        ]);
 //        dd($task->category->id);
         $task->update([
             'name' => $request->name,

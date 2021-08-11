@@ -13,30 +13,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
+Route::get('admin',[\App\Http\Controllers\HomeController::class,'dashboard'])->name('dashboard');
 
 Auth::routes();
 
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
 
-Route::get('categories',[\App\Http\Controllers\CategoryController::class,'index'])->name('admin.categories.index');
-Route::get('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('admin.categories.create');
-Route::post('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('admin.categories.store');
 
-Route::get('categories/{id}/edit',[\App\Http\Controllers\CategoryController::class,'edit'])->name('admin.categories.edit');
-Route::PUT('categories/{id}',[\App\Http\Controllers\CategoryController::class,'update'])->name('admin.categories.edit');
+    Route::get('categories',[\App\Http\Controllers\CategoryController::class,'index'])->name('categories.index');
+    Route::get('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('categories.create');
+    Route::post('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('categories.store');
 
-Route::get('categories/delete/{id}', [\App\Http\Controllers\CategoryController::class,'destroy']);
-Route::POST('categories/delete/{id}', [\App\Http\Controllers\CategoryController::class,'destroy']);
+    Route::get('categories/{id}/edit',[\App\Http\Controllers\CategoryController::class,'edit'])->name('categories.edit');
+    Route::PUT('categories/{id}',[\App\Http\Controllers\CategoryController::class,'update'])->name('categories.edit');
 
-Route::get('/categories/{slug}',[\App\Http\Controllers\CategoryController::class,'show'])->name('admin.categories.show');
+    Route::get('categories/delete/{id}', [\App\Http\Controllers\CategoryController::class,'destroy']);
+    Route::POST('categories/delete/{id}', [\App\Http\Controllers\CategoryController::class,'destroy']);
 
-Route::get('admin/tasks',[\App\Http\Controllers\TaskController::class,'index'])->name('admin.tasks.index');
-Route::get('admin/tasks/{task}',[\App\Http\Controllers\TaskController::class,'create'])->name('admin.tasks.create');
-Route::post('admin/tasks/{task}',[\App\Http\Controllers\TaskController::class,'store'])->name('admin.tasks.store');
-Route::get('admin/tasks/{id}/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('admin.tasks.edit');
-Route::PUT('admin/tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('admin.tasks.update');
-Route::get('admin/tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('admin.tasks.destroy');
+    Route::get('/categories/{slug}',[\App\Http\Controllers\CategoryController::class,'show'])->name('categories.show');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('tasks',[\App\Http\Controllers\TaskController::class,'index'])->name('tasks.index');
+    Route::get('tasks/{task}',[\App\Http\Controllers\TaskController::class,'create'])->name('tasks.create');
+    Route::post('tasks/{task}',[\App\Http\Controllers\TaskController::class,'store'])->name('tasks.store');
+    Route::get('tasks/{id}/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('tasks.edit');
+    Route::PUT('tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('tasks.update');
+    Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('tasks.destroy');
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
