@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
 
+    Route::get('/',[\App\Http\Controllers\HomeController::class,'dashboard'])->name('dashboard');
 
     Route::get('categories',[\App\Http\Controllers\CategoryController::class,'index'])->name('categories.index');
     Route::get('categories/create',[\App\Http\Controllers\CategoryController::class,'store'])->name('categories.create');
