@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin',[\App\Http\Controllers\HomeController::class,'dashboard'])->name('dashboard');
+Route::get('/',[\App\Http\Controllers\HomeController::class,'dashboard'])->name('dashboard');
 
 Auth::routes();
 
@@ -43,5 +43,5 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
 
 
 });
-Route::get('/', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 
