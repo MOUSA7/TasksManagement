@@ -34,6 +34,11 @@ class UserApiController extends Controller
         return response()->json(['data'=>$user,'status'=>200]);
     }
 
+    public function show($id){
+        $user = User::findOrFail($id);
+        return response()->json(['data'=>$user,'status'=>200]);
+    }
+
     public function update(Request $request,$id){
 
         $user = User::findOrFail($id);
