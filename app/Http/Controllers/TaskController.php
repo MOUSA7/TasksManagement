@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,8 @@ class TaskController extends Controller
 
     public function create($slug){
         $category = Category::whereSlug($slug)->first();
-        return view('admin.tasks.create',compact('category'));
+        $users = User::all();
+        return view('admin.tasks.create',compact('category','users'));
     }
 
     public function store(Request $request,$slug){
@@ -29,13 +31,17 @@ class TaskController extends Controller
         ]);
         $cat = Category::where('slug',$slug)->first();
 
-        $cat->tasks()->create([
+       $task =  $cat->tasks()->create([
             'name' => $request->name,
             'description' => $request->description,
             'time' => $request->time,
             'date' => $request->date,
             'category_id' => $cat->id,
         ]);
+       if ($users = $request->user_id){
+        $task->users()->attach($users);
+       }
+//       dd($request->all());
         return redirect()->route('admin.categories.show',$slug);
     }
 

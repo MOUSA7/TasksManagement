@@ -26,5 +26,13 @@ Route::delete('tasks/{id}/delete',[\App\Http\Controllers\TaskApiController::clas
 Route::get('tasks/{id}/show',[\App\Http\Controllers\TaskApiController::class,'show']);
 
 
+Route::get('users',[\App\Http\Controllers\Api\UserApiController::class,'index']);
+//Route::get('users/create',[\App\Http\Controllers\Api\UserApiController::class,'create']);
+Route::post('users/create',[\App\Http\Controllers\Api\UserApiController::class,'store']);
+Route::put('users/{id}/update',[\App\Http\Controllers\Api\UserApiController::class,'update']);
+Route::delete('users/{id}/delete',[\App\Http\Controllers\Api\UserApiController::class,'delete']);
+Route::get('users/{id}/show',[\App\Http\Controllers\Api\UserApiController::class,'show']);
+
+
 Route::get('categories',[\App\Http\Controllers\CategoryApiController::class,'index']);
 Route::get('category/{slug}',[\App\Http\Controllers\CategoryApiController::class,'show']);
