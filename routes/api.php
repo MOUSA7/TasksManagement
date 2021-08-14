@@ -30,7 +30,7 @@ Route::get('users',[\App\Http\Controllers\Api\UserApiController::class,'index'])
 //Route::get('users/create',[\App\Http\Controllers\Api\UserApiController::class,'create']);
 Route::post('users/create',[\App\Http\Controllers\Api\UserApiController::class,'store']);
 Route::put('users/{id}/update',[\App\Http\Controllers\Api\UserApiController::class,'update']);
-Route::delete('users/{id}/delete',[\App\Http\Controllers\Api\UserApiController::class,'delete']);
+Route::delete('users/{id}/delete',[\App\Http\Controllers\Api\UserApiController::class,'destroy']);
 Route::get('users/{id}/show',[\App\Http\Controllers\Api\UserApiController::class,'show']);
 
 
