@@ -45,7 +45,7 @@ class UserApiController extends Controller
             $file->move('images',$name);
             $inputs['image'] = $name;
         }
-//        dd($validate);
+//        dd($inputs);
         $inputs['password'] = bcrypt($request->password);
         $user->update($inputs);
         return response()->json(['data'=>$user,'status'=>201,'message'=>'User Has been Updated']);
