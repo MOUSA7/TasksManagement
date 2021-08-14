@@ -17,7 +17,7 @@ Route::get('/',[\App\Http\Controllers\HomeController::class,'dashboard'])->name(
 
 Auth::routes();
 
-//Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
 
     Route::get('/',[\App\Http\Controllers\HomeController::class,'dashboard'])->name('dashboard');
 
@@ -44,6 +44,6 @@ Auth::routes();
 
 
     Route::resource('users',\App\Http\Controllers\UserController::class);
-//});
+});
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 
