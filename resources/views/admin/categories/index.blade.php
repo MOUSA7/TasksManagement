@@ -136,7 +136,7 @@
             var id = $(this).data('id');
             var token = $("#token").val();
             var method = $("#method").val();
-            $.post("/categories/delete/"+id,{'_method':method,"_token":token}).done(function (data) {
+            $.post("/admin/categories/delete/"+id,{'_method':method,"_token":token}).done(function (data) {
                 $('#categories').replaceWith(data);
             })
         });
