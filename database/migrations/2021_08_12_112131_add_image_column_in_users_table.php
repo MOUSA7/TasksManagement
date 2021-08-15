@@ -15,6 +15,7 @@ class AddImageColumnInUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('image')->nullable()->after('email');
+            $table->string('phone')->nullable()->after('password');
         });
     }
 

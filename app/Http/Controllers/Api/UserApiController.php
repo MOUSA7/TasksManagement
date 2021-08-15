@@ -15,7 +15,7 @@ class UserApiController extends Controller
     }
 
     public function store(Request $request){
-//        dd('dd');
+
         $inputs = $request->all();
 
         if ($file = $request->file('image')){
@@ -58,6 +58,7 @@ class UserApiController extends Controller
     }
     public function destroy($id){
         $user = User::findOrFail($id);
+        $user->delete();
         return response()->json(['data'=>$user,'status'=>200,'message'=>'User Has been deleted']);
     }
 }

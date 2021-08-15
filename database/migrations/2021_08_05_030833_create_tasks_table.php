@@ -20,16 +20,13 @@ class CreateTasksTable extends Migration
             $table->string('time')->nullable();
             $table->date('date')->nullable();
             $table->foreignId('category_id')->nullable();
+            $table->string('status')->nullable();
 //            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('tasks');

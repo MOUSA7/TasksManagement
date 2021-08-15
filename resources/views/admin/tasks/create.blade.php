@@ -48,9 +48,9 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group" style="padding-top: 25px">
                                         <label for="">Users : </label>
-                                        <select name="user_id[]" id="category" class="form-control" multiple>
+                                        <select  name="user_id[]" id="category" class="form-control" multiple>
                                             @foreach($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-6 ">
 
                                     <div class="form-group">
                                         <label for="">Time</label>
@@ -79,6 +79,21 @@
                                         <label for="">Description :</label>
                                         <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
                                         @error('description')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Status : </label>
+                                        <select name="status"  class="form-control" >
+                                            @foreach($status as $key=>$state)
+                                                <option value="3">{{$state}}</option>
+{{--                                                <option value="{{$key}}">{{$state}}</option>--}}
+                                            @endforeach
+                                        </select>
+                                        @error('date')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>

@@ -18,8 +18,11 @@ class TaskController extends Controller
 
     public function create($slug){
         $category = Category::whereSlug($slug)->first();
+        $status = ['initialize'];
+//        $status = ['initialize','Waiting','Done'];
+//        dd($status->key);
         $users = User::all();
-        return view('admin.tasks.create',compact('category','users'));
+        return view('admin.tasks.create',compact('category','users','status'));
     }
 
     public function store(Request $request,$slug){
@@ -37,6 +40,7 @@ class TaskController extends Controller
             'time' => $request->time,
             'date' => $request->date,
             'category_id' => $cat->id,
+           'status'=>$request->status
         ]);
        if ($users = $request->user_id){
         $task->users()->attach($users);
@@ -47,7 +51,8 @@ class TaskController extends Controller
 
     public function edit($id){
         $task = Task::findOrFail($id);
-        return view('admin.tasks.edit',compact('task'));
+        $status = ['initialize','Waiting','Done'];
+        return view('admin.tasks.edit',compact('task','status'));
     }
 
     public function update(Request $request,$id){
@@ -64,7 +69,8 @@ class TaskController extends Controller
             'description' => $request->description,
             'time' => $request->time,
             'date' => $request->date,
-            'category_id' => $task->category->id
+            'category_id' => $task->category->id,
+            'status' => $request->status
         ]);
 
         return redirect()->route('admin.categories.show',$task->category->slug);

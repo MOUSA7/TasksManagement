@@ -37,6 +37,22 @@
                                             <label for="">Date : </label>
                                             <input type="date" value="{{$task->date}}" name="date" class="form-control">
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="">Status : </label>
+                                            <select name="status"  class="form-control" >
+                                                @foreach($status as $key=>$state)
+                                                    <option value="{{$key}}">{{$state}}</option>
+                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
+                                                @endforeach
+                                            </select>
+                                            @error('date')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
+                                        </div>
+
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
