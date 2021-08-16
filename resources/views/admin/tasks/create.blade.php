@@ -89,7 +89,7 @@
                                         <label for="">Status : </label>
                                         <select name="status"  class="form-control" >
                                             @foreach($status as $key=>$state)
-                                                <option value="3">{{$state}}</option>
+                                                <option value="0">{{$state}}</option>
 {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
                                             @endforeach
                                         </select>

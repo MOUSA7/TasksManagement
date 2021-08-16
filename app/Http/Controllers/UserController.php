@@ -56,12 +56,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $validate = $this->validate($request,[
-            'name' => 'required',
-            'email'=> 'required|email',
-            'password' => 'required|password',
-            'image' => 'required|mimes:jpg,png,jpeg'
-        ]);
         $inputs = $request->all();
 
         if ($file = $request->file('image')){

@@ -44,6 +44,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
 
 
     Route::resource('users',\App\Http\Controllers\UserController::class);
+    Route::get('users/{id}/delete',[\App\Http\Controllers\UserController::class,'destroy']);
 });
 Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 

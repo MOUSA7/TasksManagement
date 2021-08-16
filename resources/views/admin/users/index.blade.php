@@ -43,7 +43,7 @@
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>
                             <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-xs btn-primary">Edit</a>
-                            <a href="#" class="btn btn-xs btn-danger">Delete</a>
+                            <a href="{{route('admin.users.destroy',$user->id.'/delete')}}" class="btn btn-xs btn-danger">Delete</a>
                             <a href="#" class="btn btn-xs btn-info">Show</a>
                         </td>
                     </tr>
