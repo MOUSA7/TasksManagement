@@ -45,6 +45,7 @@ class TaskController extends Controller
        if ($users = $request->user_id){
         $task->users()->attach($users);
        }
+       dd($request->all());
 //       dd($request->all());
         return redirect()->route('admin.categories.show',$slug);
     }

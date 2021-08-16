@@ -40,9 +40,12 @@ class TaskApiController extends Controller
         ]);
 //        dd($task);
         if ($users = $request->user_id){
-            $task->users()->attach($users);
-        }        if ($task){
-            return response()->json(['data'=>$task,'status'=>200,'msg'=>'Successfully Created']);
+            $task->users()->sync($users);
+        }
+        $data = $request->all();
+
+        if ($task){
+            return response()->json(['data'=>$data,'status'=>200,'msg'=>'Successfully Created']);
         }else{
             return response()->json(['msg'=>'Something Error in This Page']);
         }
