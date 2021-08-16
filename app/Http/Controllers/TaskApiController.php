@@ -12,7 +12,7 @@ class TaskApiController extends Controller
 
 //        $tasks = ['name'=>'Create Meeting','time'=>date('h:i:s'),'date'=>date(now()),'description'=>'Meeting to choose decision'];
 
-        $tasks = Task::all();
+        $tasks = Task::with('users')->get();
         return response()->json(['data'=>$tasks,'status'=>200]);
     }
 
@@ -67,8 +67,15 @@ class TaskApiController extends Controller
             'date' => $request->date,
             'category_id' => $request->category_id
         ]);
+
+        if ($users = $request->user_id){
+            $task->users()->sync($users);
+        }
+        $data = $request->all();
+
+
         if ($task){
-            return response()->json(['data'=>$task,'status'=>200,'msg'=>'Successfully Updated']);
+            return response()->json(['data'=>$data,'status'=>200,'msg'=>'Successfully Updated']);
         }else{
             return response()->json(['msg'=>'Something Error in This Page']);
         }
