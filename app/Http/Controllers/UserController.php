@@ -56,16 +56,20 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $inputs = $request->all();
-
+        $input = $request->all();
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        } else{
+            $input['password'] = bcrypt($request->password);
+        }
+//        dd($input);
         if ($file = $request->file('image')){
             $name = $file->getClientOriginalName();
             $file->move('images',$name);
-            $inputs['image'] = $name;
+            $input['image'] = $name;
         }
-//        dd($validate);
-        $inputs['password'] = bcrypt($request->password);
-        $user->update($inputs);
+//        dd($request->all());
+        $user->update($input);
 
         return redirect('admin/users');
     }

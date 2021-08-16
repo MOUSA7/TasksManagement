@@ -51,7 +51,7 @@
 
                                     <div class="form-group">
                                         <label for="">password : </label>
-                                        <input type="password"  name="password"  class="form-control @error('password') is-invalid @enderror">
+                                        <input type="password"  name="password" value="{{old($user->password)}}" class="form-control @error('password') is-invalid @enderror">
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
