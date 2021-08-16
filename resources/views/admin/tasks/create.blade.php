@@ -50,7 +50,7 @@
 
                                     <div class="form-group" style="padding-top: 25px">
                                         <label for="">Users : </label>
-                                        <select  name="user_id[]" id="category" class="form-control" multiple>
+                                        <select  name="user_id[]" id="user_id" class="form-control" multiple>
                                             @foreach($users as $user)
                                             <option value="{{$user->id}}">{{$user->name}}</option>
                                             @endforeach

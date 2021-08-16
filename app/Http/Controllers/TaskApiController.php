@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TaskApiController extends Controller
 {
     public function index(){
-//        dd(date('h:i:s'));
+
 //        $tasks = ['name'=>'Create Meeting','time'=>date('h:i:s'),'date'=>date(now()),'description'=>'Meeting to choose decision'];
 
         $tasks = Task::all();
@@ -39,8 +39,9 @@ class TaskApiController extends Controller
             'category_id' => $cat->id,
         ]);
 //        dd($task);
-//        $task->save();
-        if ($task){
+        if ($users = $request->user_id){
+            $task->users()->attach($users);
+        }        if ($task){
             return response()->json(['data'=>$task,'status'=>200,'msg'=>'Successfully Created']);
         }else{
             return response()->json(['msg'=>'Something Error in This Page']);
