@@ -68,11 +68,11 @@ class TaskApiController extends Controller
             'category_id' => $request->category_id
         ]);
 
+
         if ($users = $request->user_id){
             $task->users()->sync($users);
         }
         $data = $request->all();
-
 
         if ($task){
             return response()->json(['data'=>$data,'status'=>200,'msg'=>'Successfully Updated']);
