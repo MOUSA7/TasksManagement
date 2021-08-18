@@ -18,13 +18,14 @@ class UserApiController extends Controller
     public function store(Request $request){
 
         $inputs = $request->all();
+        $inputs['api_token'] = Str::random(80);
+
         if ($file = $request->file('image')){
             $name = $file->getClientOriginalName();
             $file->move('images',$name);
             $inputs['image'] = $name;
         }
         $inputs['password'] = bcrypt($request->password);
-        $inputs['api_token'] = Str::random(80);
 //        dd($inputs);
         $user = User::create($inputs);
         return response()->json(['data'=>$user,'status'=>201,'message'=>'User Has been Created']);
@@ -46,6 +47,7 @@ class UserApiController extends Controller
         $user = User::findOrFail($id);
 
         $inputs = $request->all();
+        $inputs['api_token'] = Str::random(80);
 
         if ($file = $request->file('image')){
             $name = $file->getClientOriginalName();
@@ -54,7 +56,6 @@ class UserApiController extends Controller
         }
 //        dd($inputs);
         $inputs['password'] = bcrypt($request->password);
-        $inputs['api_token'] = Str::random(80);
 
         $user->update($inputs);
         return response()->json(['data'=>$user,'status'=>201,'message'=>'User Has been Updated']);
