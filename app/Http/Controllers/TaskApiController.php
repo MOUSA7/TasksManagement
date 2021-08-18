@@ -10,9 +10,9 @@ class TaskApiController extends Controller
 {
 
 
-    public function __construct(){
-        $this->middleware('auth:api')->only(['store']);
-    }
+//    public function __construct(){
+//        $this->middleware('auth:api')->only(['store']);
+//    }
     public function index(){
 
 //        $tasks = ['name'=>'Create Meeting','time'=>date('h:i:s'),'date'=>date(now()),'description'=>'Meeting to choose decision'];
