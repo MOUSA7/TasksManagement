@@ -25,7 +25,7 @@ class UserApiController extends Controller
         }
         $inputs['password'] = bcrypt($request->password);
         $inputs['api_token'] = Str::random(80);
-//        dd($inputs);
+        dd($inputs);
         $user = User::create($inputs);
         return response()->json(['data'=>$user,'status'=>201,'message'=>'User Has been Created']);
 
