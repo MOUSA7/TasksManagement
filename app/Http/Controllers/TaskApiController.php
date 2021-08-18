@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class TaskApiController extends Controller
 {
+
+
+    public function __construct(){
+        $this->middleware('auth:api')->only(['store']);
+    }
     public function index(){
 
 //        $tasks = ['name'=>'Create Meeting','time'=>date('h:i:s'),'date'=>date(now()),'description'=>'Meeting to choose decision'];
@@ -82,10 +87,9 @@ class TaskApiController extends Controller
     }
 
     public function delete($id){
-        $task = Task::findOrFail($id);
-        $task->delete();
-
-        return response()->json(['status'=>200,'msg'=>'Successfully Deleted']);
+        $task = Task::findOrFail($id)->delete();
+//        $task->delete();
+        return response()->json(['data'=>$task,'status'=>200,'msg'=>'Successfully Deleted']);
 
     }
 

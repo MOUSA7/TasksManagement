@@ -10,6 +10,7 @@ class Task extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $hidden = ['place','appointment','exit_time','arrive_time','roles','policyId'];
 
     public function category(){
         return $this->belongsTo(Category::class);

@@ -17,21 +17,24 @@ class TaskController extends Controller
     }
 
     public function create($slug){
+
         $category = Category::whereSlug($slug)->first();
+        $charge_place = ['china','turkish'];
         $status = ['initialize'];
+        $roles = ['seen','sharing'];
 //        $status = ['initialize','Waiting','Done'];
 //        dd($status->key);
         $users = User::all();
-        return view('admin.tasks.create',compact('category','users','status'));
+        return view('admin.tasks.create',compact('category','roles','charge_place','users','status'));
     }
 
     public function store(Request $request,$slug){
-        $this->validate($request,[
-            'name' => 'required',
-            'description'=>'required',
-            'time'=>'required',
-            'date'=>'required'
-        ]);
+//        $this->validate($request,[
+//            'name' => 'required',
+//            'description'=>'required',
+//            'time'=>'required',
+//            'date'=>'required'
+//        ]);
         $cat = Category::where('slug',$slug)->first();
 
        $task =  $cat->tasks()->create([
@@ -40,8 +43,15 @@ class TaskController extends Controller
             'time' => $request->time,
             'date' => $request->date,
             'category_id' => $cat->id,
-           'status'=>$request->status
+           'status'=>$request->status,
+           'place' =>$request->place,
+           'appointment'=>$request->appointment,
+           'exit_time'=>$request->exit_time,
+           'arrive_time'=>$request->arrive_time,
+           'roles'=> $request->roles,
+           'policyId'=>$request->policyId
         ]);
+       dd($request->all());
        if ($users = $request->user_id){
         $task->users()->attach($users);
        }
@@ -81,5 +91,11 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->delete();
         return redirect()->back();
+    }
+    public function ExportCreate(){
+        return view('tasks.export');
+    }
+    public function ExportStore(Request $request){
+
     }
 }

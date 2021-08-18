@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserApiController extends Controller
 {
@@ -17,13 +18,14 @@ class UserApiController extends Controller
     public function store(Request $request){
 
         $inputs = $request->all();
-
         if ($file = $request->file('image')){
             $name = $file->getClientOriginalName();
             $file->move('images',$name);
             $inputs['image'] = $name;
         }
         $inputs['password'] = bcrypt($request->password);
+        $inputs['api_token'] = Str::random(80);
+//        dd($inputs);
         $user = User::create($inputs);
         return response()->json(['data'=>$user,'status'=>201,'message'=>'User Has been Created']);
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -30,7 +31,7 @@ class UserController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg'
         ]);
         $inputs = $request->all();
-
+        $inputs['api_token'] = Str::random(80);
         if ($file = $request->file('image')){
             $name = $file->getClientOriginalName();
             $file->move('images',$name);

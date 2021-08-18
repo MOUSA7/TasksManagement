@@ -39,7 +39,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::get('tasks/{id}/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('tasks.edit');
     Route::PUT('tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('tasks.update');
     Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('tasks.destroy');
-
+    Route::get('tasks/export/create',[\App\Http\Controllers\TaskController::class,'ExportStore'])->name('tasks.export');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
