@@ -47,7 +47,7 @@ class UserApiController extends Controller
         $user = User::findOrFail($id);
 
         $inputs = $request->all();
-        $inputs['api_token'] = Str::random(80);
+        $user->api_token = Str::random(80);
 
         if ($file = $request->file('image')){
             $name = $file->getClientOriginalName();
