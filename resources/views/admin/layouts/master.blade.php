@@ -222,6 +222,55 @@
     $("#category").select2();
 </script>
 
+<script type="text/javascript">
+    $("#place").on('change',function (){
+       if ($(this).val() == "turkish"){
+           $("#policy").slideToggle("slow");
+           $("#certificate").slideDown("slow");
+           $("#invoice").slideDown("slow");
+       }else {
+           $("#policy").hide();
+       }
+    });
 
+    $("#date").on('change',function (){
+        if ($(this).val() != null){
+            $("#secure").show("slow");
+        }else {
+            $("#secure").hide();
+        }
+    });
+
+    $("#secure").on('change',function (){
+        if ($(this).val() != null){
+            $("#status").slideToggle("slow");
+        }else {
+            $("#status").hide();
+        }
+    });
+
+    $("#save").on('click',function (){
+       // $("#send").hide();
+       // $("#appoint").show();
+       // $("#result").show();
+    });
+
+    // $("#next").on('click',function (){
+    //     $("#import_form").hide();
+    //     $("#check_list").show();
+    //     $("#next").hide()
+    //     $("#save").show();
+    //     $("#prev").show();
+    // });
+
+    // $("#prev").on('click',function (){
+    //     $("#prev").slideUp();
+    //     $("#check_list").hide();
+    //     $("#import_form").show();
+    //     $("#save").hide();
+    //     $("#next").show();
+    //
+    // });
+</script>
 </body>
 </html>

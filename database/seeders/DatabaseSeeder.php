@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $categories = ['Meeting Task','General Task','Export Task'];
+        $categories = ['Meeting Task','General Task','Import Task'];
         foreach ($categories as $key=>$name){
             Category::create(['name'=>$name,'slug'=>Str::slug($name)]);
         }

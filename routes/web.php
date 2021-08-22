@@ -37,7 +37,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::get('tasks/{task}',[\App\Http\Controllers\TaskController::class,'create'])->name('tasks.create');
     Route::post('tasks/{task}',[\App\Http\Controllers\TaskController::class,'store'])->name('tasks.store');
     Route::get('tasks/{id}/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('tasks.edit');
+    Route::get('tasks/{id}/editor',[\App\Http\Controllers\TaskController::class,'ExportEdit'])->name('tasks.editor');
     Route::PUT('tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('tasks.update');
+    Route::PUT('tasks/{id}/editor',[\App\Http\Controllers\TaskController::class,'ExportUpdate'])->name('tasks.editor.update');
+    Route::get('tasks/{id}/show',[\App\Http\Controllers\TaskController::class,'show'])->name('tasks.show');
     Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('tasks.destroy');
     Route::get('tasks/export/create',[\App\Http\Controllers\TaskController::class,'ExportStore'])->name('tasks.export');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

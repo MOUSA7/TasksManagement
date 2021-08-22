@@ -3,7 +3,7 @@
 @section('title')
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Tasks Management</h1>
+            <h1>Create {{$category->name}}</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -19,24 +19,21 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                @if($category->slug == "export-task")
-                    <form action="{{route('admin.tasks.export')}}" method="post">
+            @if($category->slug == "import-task")
+
+               <form action="{{route('admin.tasks.store',$category->slug)}}" method="post">
                         @csrf
                         <div class="card">
-                            <div class="card-header">{{ __('Create Task') }}</div>
+                            <div class="card-header"><b>{{ __('Create Task') }}</b></div>
 
-                            <div class="card-body">
+                            <div class="card-body" id="import_form">
                                 <div class="row">
                                     <div class="col-sm-6">
+
                                         <div class="form-group">
-                                            <label for="">Charge Place : </label>
-                                            <select name="place"  class="form-control" >
-                                                @foreach($charge_place as $key=>$place)
-                                                    <option value="{{$key}}">{{$place}}</option>
-                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
-                                                @endforeach
-                                            </select>
-                                            @error('place')
+                                            <label for="">Name : </label>
+                                            <input type="text" placeholder="Task Name" name="name" class="form-control @error('name') is-invalid @enderror">
+                                            @error('name')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
@@ -44,7 +41,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Exit Date : </label>
+                                            <label for="">Shipping Date : </label>
                                             <input type="date" name="exit_time" class="form-control @error('date') is-invalid @enderror">
                                             @error('date')
                                             <span class="invalid-feedback" role="alert">
@@ -67,26 +64,29 @@
                                             @enderror
                                         </div>
 
+
                                         <div class="form-group">
-                                            <label for="">PolicyId : </label>
-                                            <input type="text"  name="policyId" class="form-control @error('policyId') is-invalid @enderror">
-                                            @error('policyId')
+                                            <label for="">Description :</label>
+                                            <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
+                                            @error('description')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
                                             @enderror
                                         </div>
-
                                     </div>
-
-
 
                                     <div class="col-sm-6 ">
 
                                         <div class="form-group">
-                                            <label for="">Name : </label>
-                                            <input type="text"  name="name" class="form-control @error('name') is-invalid @enderror">
-                                            @error('name')
+                                            <label for="">Charge Place : </label>
+                                            <select name="place" id="place"  class="form-control" >
+                                                @foreach($charge_place as $key=>$place)
+                                                    <option  value="{{$place}}">{{$place}}</option>
+                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
+                                                @endforeach
+                                            </select>
+                                            @error('place')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
@@ -107,7 +107,7 @@
                                             <label for="">Roles : </label>
                                             <select name="roles"  class="form-control" >
                                                 @foreach($roles as $key=>$role)
-                                                    <option value="{{$key}}">{{$role}}</option>
+                                                    <option  value="{{$role}}">{{$role}}</option>
                                                     {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
                                                 @endforeach
                                             </select>
@@ -118,25 +118,41 @@
                                             @enderror
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="">Description :</label>
-                                            <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
-                                            @error('description')
+                                        <div class="form-group" id="policy">
+                                            <label for="">PolicyId : </label>
+                                            <input type="text" placeholder="Policy Number" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
+                                            @error('policyId')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                         </span>
                                             @enderror
                                         </div>
 
+                                        <div class="form-check" id="certificate">
+                                            <input  class="form-check-input" name="created_certification" value="1" type="checkbox" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Created Certification
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check" id="invoice">
+                                            <input  class="form-check-input" name="invoice" value="1" type="checkbox" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Invoice
+                                            </label>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-center">
-                            <input type="submit" class="btn btn-primary col-5" value="Create Task">
+
 
                         </div>
+                        <div class="text-center" id="save">
+                            <input type="submit" class="btn btn-primary col-5" value="Create Task">
+                        </div>
                     </form>
+
                 @else
                 <form action="{{route('admin.tasks.store',$category->slug)}}" method="post">
                         @csrf
@@ -234,3 +250,17 @@
     </div>
 
 @endsection
+<style type="text/css">
+    #policy{
+        display: none;
+    }
+    #certificate{
+        display: none;
+    }
+    #invoice{
+        display: none;
+    }
+    /*#prev{*/
+    /*    display: none;*/
+    /*}*/
+</style>
