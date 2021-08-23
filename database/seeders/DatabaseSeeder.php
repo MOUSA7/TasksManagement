@@ -21,6 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
+        User::create([
+            'name' => 'mousa',
+            'email'=>'mousa@hotmail.com',
+            'password'=>bcrypt('password'),
+            'api_token'=>Str::random(80),
+        ]);
+
         $categories = ['Meeting Task','General Task','Import Task'];
         foreach ($categories as $key=>$name){
             Category::create(['name'=>$name,'slug'=>Str::slug($name)]);
@@ -28,11 +35,6 @@ class DatabaseSeeder extends Seeder
 
        Task::factory(5)->create();
 
-        User::create([
-            'name' => 'mousa',
-            'email'=>'mousa@hotmail.com',
-            'password'=>bcrypt('password'),
-            'api_token'=>Str::random(80),
-        ]);
+
     }
 }

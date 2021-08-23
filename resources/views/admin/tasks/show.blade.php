@@ -73,7 +73,7 @@
                         @csrf
                         @method('PUT')
                         <div class="card">
-                            <div class="card-header text-center">{{ __('Export Task') }}</div>
+                            <div class="card-header text-center">{{ __('Import Task') }}</div>
 
                             <div class="card-body">
                                 @if($task->Send_to_sincere == null)

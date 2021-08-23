@@ -2,10 +2,15 @@
 
 @section('title')
     <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <h1>Users Management</h1>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
+            <br>
+            <br>
+            <a href="{{route('admin.users.create')}}" class="btn btn-outline-dark col-8">Create User</a>
+        </div>
+        <div class="col-sm-5">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
