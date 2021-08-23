@@ -10,10 +10,11 @@ class AddSecureCheckInTasksTable extends Migration
     public function up()
     {
         Schema::table('tasks', function (Blueprint $table) {
-            $table->date('secure_check')->nullable();
+            $table->text('secure_check')->nullable();
             $table->integer('Send_to_sincere')->nullable();
             $table->string('created_certification')->nullable();
             $table->string('invoice')->nullable();
+            $table->string('packing_list')->nullable();
         });
     }
 

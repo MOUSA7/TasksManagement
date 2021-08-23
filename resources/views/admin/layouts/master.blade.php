@@ -10,6 +10,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/bs-stepper/css/bs-stepper.min.css')}}">
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -99,7 +104,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('dashboard')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -217,19 +222,26 @@
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+<!-- InputMask -->
+<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <script>
     $("#category").select2();
 </script>
 
 <script type="text/javascript">
     $("#place").on('change',function (){
-       if ($(this).val() == "turkish"){
+       if ($(this).val() === "Euro"){
            $("#policy").slideToggle("slow");
            $("#certificate").slideDown("slow");
            $("#invoice").slideDown("slow");
+           $("#packing").slideDown("slow");
        }else {
            $("#policy").hide();
+           $("#certificate").hide();
+           $("#invoice").hide();
+           $("#packing").hide();
        }
     });
 
@@ -271,6 +283,7 @@
     //     $("#next").show();
     //
     // });
+    $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
 
 </script>
 

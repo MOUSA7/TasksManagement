@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
             </ol>
         </div>
@@ -74,6 +74,14 @@
                                         </span>
                                             @enderror
                                         </div>
+
+                                        <div class="form-check" id="packing">
+                                            <input  class="form-check-input" name="packing_list" value="1" type="checkbox" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Packing List
+                                            </label>
+                                        </div>
+
                                     </div>
 
                                     <div class="col-sm-6 ">
@@ -119,8 +127,8 @@
                                         </div>
 
                                         <div class="form-group" id="policy">
-                                            <label for="">PolicyId : </label>
-                                            <input type="text" placeholder="Policy Number" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
+                                            <label for="">Bill Of Loading : </label>
+                                            <input type="text" placeholder="Bill Of Loading" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
                                             @error('policyId')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -131,10 +139,10 @@
                                         <div class="form-check" id="certificate">
                                             <input  class="form-check-input" name="created_certification" value="1" type="checkbox" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                Created Certification
+                                                Bill of Loading
                                             </label>
                                         </div>
-
+                                        <br>
                                         <div class="form-check" id="invoice">
                                             <input  class="form-check-input" name="invoice" value="1" type="checkbox" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
@@ -258,6 +266,9 @@
         display: none;
     }
     #invoice{
+        display: none;
+    }
+    #packing{
         display: none;
     }
     /*#prev{*/

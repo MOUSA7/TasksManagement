@@ -19,7 +19,7 @@ class TaskController extends Controller
     public function create($slug){
 
         $category = Category::whereSlug($slug)->first();
-        $charge_place = ['china','turkish'];
+        $charge_place = ['Global','Euro'];
         $status = ['initialize'];
         $roles = ['seen','sharing'];
 //        $status = ['initialize','Waiting','Done'];

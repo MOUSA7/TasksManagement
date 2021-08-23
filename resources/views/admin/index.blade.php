@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Management</li>
             </ol>
         </div>
@@ -20,14 +20,16 @@
             <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>150</h3>
+                    <h3>
+                        {{$tasks->count()}}
+                    </h3>
 
-                    <p>New Orders</p>
+                    <p>New Tasks</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('admin.categories.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
@@ -50,7 +52,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>44</h3>
+                    <h3>{{$users->count()}}</h3>
 
                     <p>User Registrations</p>
                 </div>

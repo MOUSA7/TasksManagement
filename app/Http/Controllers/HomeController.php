@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +30,9 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.index');
+        $tasks = Task::all();
+        $users = User::all();
+        return view('admin.index',compact('tasks','users'));
     }
 
     public function logout(){
