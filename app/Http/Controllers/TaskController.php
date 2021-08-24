@@ -19,7 +19,7 @@ class TaskController extends Controller
     public function create($slug){
 
         $category = Category::whereSlug($slug)->first();
-        $charge_place = ['Global','Euro'];
+        $charge_place = ['Global','Euro','Other'];
         $status = ['initialize'];
         $roles = ['seen','sharing'];
 //        $status = ['initialize','Waiting','Done'];
@@ -51,7 +51,9 @@ class TaskController extends Controller
            'roles'=> $request->roles,
            'policyId'=>$request->policyId,
            'created_certification'=>$request->created_certification,
-           'invoice' => $request->invoice
+           'invoice' => $request->invoice,
+           'driver_israel'=>$request->driver_israel,
+           'driver_gaza' => $request->driver_israel
         ]);
        if ($users = $request->user_id){
         $task->users()->attach($users);
@@ -92,9 +94,10 @@ class TaskController extends Controller
             'roles'=> $request->roles,
             'policyId'=>$request->policyId,
             'created_certification'=>$request->created_certification,
-            'invoice' => $request->invoice
+            'invoice' => $request->invoice,
+            'driver_gaza'=>$request->driver_gaza,
+            'driver_israel'=>$request->driver_israel,
         ]);
-
 
         return redirect()->route('admin.categories.show',$task->category->slug);
     }
@@ -129,6 +132,16 @@ class TaskController extends Controller
         }
         if ($task->status){
             $task->update(['status'=>$request->status]);
+        }
+        if ($task->driver_israel != null){
+            $task->update(['driver_israel'=>$task->driver_israel]);
+        }else{
+            $task->update(['driver_israel'=>$request->driver_israel]);
+        }
+        if ($task->driver_gaza != null){
+            $task->update(['driver_gaza'=>$task->driver_gaza]);
+        }else{
+            $task->update(['driver_gaza'=>$request->driver_gaza]);
         }
         $task->update(['status'=>$request->status]);
         return redirect()->back();

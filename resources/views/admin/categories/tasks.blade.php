@@ -30,13 +30,11 @@
                 @if($category->slug == "import-task")
                     <tr>
                         <th>ID</th>
-                        <th>name</th>
-                        <th>Place</th>
-                        <th>appointment</th>
-                        <th>Description</th>
-                        <th>Exit Time</th>
-                        <th>Arrive Time</th>
-                        <th>Role</th>
+                        <th>Shipment</th>
+                        <th>B/L</th>
+                        <th>ETD</th>
+                        <th>ETA</th>
+                        <th>Coordinate</th>
                         <th>Progress</th>
                         <th>Actions</th>
                     </tr>
@@ -61,19 +59,17 @@
                             <td>
                                 <a href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
                             </td>
-                            <td>{{$task->place}}</td>
-                            <td>{{$task->appointment}}</td>
-                            <td>{{Str::limit($task->description,30)}}</td>
+                            <td>{{$task->policyId}}</td>
                             <td>{{$task->exit_time}}</td>
                             <td>{{$task->arrive_time}}</td>
-                            <td>{{$task->roles}}</td>
+                            <td >{{$task->secure_check}}</td>
                             <td>
                                 <div class="progress" style=" border-radius: 5px">
-                                    @if($task->status == "initialize")
+                                    @if($task->driver_israel == 0 && $task->driver_gaza == 0)
                                         <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                    @elseif($task->status == "Waiting")
+                                    @elseif($task->driver_israel == 1 && $task->driver_gaza == 0)
                                         <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                    @elseif($task->status == "Done")
+                                    @elseif($task->driver_gaza == 1 && $task->driver_israel == 1)
                                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     @else
                                         <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>

@@ -86,12 +86,11 @@
 
                                     <div class="col-sm-6 ">
 
-                                        <div class="form-group">
+                                        <div class="form-group" id="select">
                                             <label for="">Charge Place : </label>
                                             <select name="place" id="place"  class="form-control" >
                                                 @foreach($charge_place as $key=>$place)
                                                     <option  value="{{$place}}">{{$place}}</option>
-                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
                                                 @endforeach
                                             </select>
                                             @error('place')
@@ -101,6 +100,10 @@
                                             @enderror
                                         </div>
 
+                                        <div class="form-group" id="other">
+                                            <label for="">Place : </label>
+                                            <input type="text" placeholder="Other Place" name="place"  class="form-control">
+                                        </div>
                                         <div class="form-group">
                                             <label for="">Arrive Time : </label>
                                             <input type="date" name="arrive_time" class="form-control @error('arrive_time') is-invalid @enderror">
@@ -139,7 +142,7 @@
                                         <div class="form-check" id="certificate">
                                             <input  class="form-check-input" name="created_certification" value="1" type="checkbox" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
-                                                Bill of Loading
+                                                Certificate Of Origin(Euro)
                                             </label>
                                         </div>
                                         <br>
@@ -269,6 +272,9 @@
         display: none;
     }
     #packing{
+        display: none;
+    }
+    #other{
         display: none;
     }
     /*#prev{*/

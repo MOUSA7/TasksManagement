@@ -25,31 +25,42 @@
                             @if($task->Send_to_sincere)
 
                                 <div>
-                                    <p>Do you Sent Document To Broker : <span class="badge badge-primary col-6">Document Sent To Broker Successfully</span>
+                                    <p>Send Document : <span class="badge badge-primary col-6 float-right">Document Sent Successfully</span>
                                     </p>
                                 </div>
                             @endif
 
                             @if($task->secure_check)
                                 <div id="secure">
-                                    <p>Appointment Secure Check&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span class="badge badge-primary col-4">{{$task->secure_check}}</span></p>
+                                    <p>Appointment Security Check :
+                                        <span class="badge badge-primary col-4 float-right">{{$task->secure_check}}</span></p>
 
                                 </div>
                             @endif
 
+                                @if($task->driver_israel)
+                                    <div>
+                                        <p>Driver Israel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <span class="badge badge-dark col-4 float-right">{{$task->driver_israel ==1 ?"Done":''}}</span></p>
+
+                                    </div>
+                                @endif
 
                             @if($task->appointment)
                                 <div>
-                                    <p>Coordination Into Gaza &nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;:&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <span
-                                            class="badge badge-primary col-4">{{$task->appointment}}</span></p>
+                                    <p>Coordination Into Gaza  :<span
+                                            class="badge badge-primary col-4 float-right">{{$task->appointment}}</span></p>
 
                                 </div>
                             @endif
 
+                                @if($task->driver_gaza)
+                                    <div>
+                                        <p>Driver Gaza :
+                                            <span class="badge badge-dark col-4 float-right">{{$task->driver_gaza ==1 ?"Done":''}}</span></p>
 
+                                    </div>
+                                @endif
 
                             @if($task->status)
                                 <div>
@@ -68,7 +79,7 @@
                         </div>
                     </div>
                 @endif
-                @if($task->Send_to_sincere == null ||$task->secure_check == null || $task->appointment == null || $task->status == 0)
+                @if($task->Send_to_sincere == null ||$task->driver_israel == null ||$task->driver_gaza == null || $task->appointment == null )
                     <form action="{{route('admin.tasks.editor.update',$task->id)}}" method="post">
                         @csrf
                         @method('PUT')
@@ -81,7 +92,7 @@
                                         <input class="form-check-input" name="Send_to_sincere" type="checkbox" value="1"
                                                id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault">
-                                            Do you Send to Broker
+                                            Send Document
                                         </label>
                                     </div>
                                 @endif
@@ -98,33 +109,47 @@
                                         </div>
                                 @endif
 
-                                @if($task->appointment == null && $task->Send_to_sincere != null && $task->secure_check != null)
+                                    <!--Driver Israel!-->
+                                    @if($task->driver_israel == null && $task->Send_to_sincere != null && $task->secure_check != null)
+                                        <div class="form-check" >
+                                            <input class="form-check-input" name="driver_israel" type="checkbox" value="1"
+                                                   id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Driver israel
+                                            </label>
+                                        </div>
+                                    @endif
+                                <!--Driver Appointment Coordination!-->
+                                @if($task->appointment == null && $task->Send_to_sincere != null && $task->secure_check != null && $task->driver_israel != null)
                                     <div class="form-group" id="appoint">
                                         <label for="">Appointment Coordination to Gaza : </label>
                                         <input id="date" type="date"
                                                value="{{$task->appointment ? $task->appointment :''}}"
-                                               name="appointment"
-                                               class="form-control @error('appointment') is-invalid @enderror">
-                                        @error('appointment')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                               name="appointment" class="form-control">
                                     </div>
+                                    @endif
+                                    @if($task->driver_gaza == null && $task->appointment != null && $task->Send_to_sincere != null && $task->secure_check != null && $task->driver_israel != null)
+                                        <div class="form-check" id="send">
+                                            <input class="form-check-input" name="driver_gaza" type="checkbox" value="1"
+                                                   id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Driver Gaza
+                                            </label>
+                                        </div>
 
-                                @endif
-                                @if($task->status == null && $task->Send_to_sincere != null && $task->secure_check != null && $task->appointment != null)
+                                    @endif
+{{--                                @if($task->status == null && $task->Send_to_sincere != null && $task->secure_check != null && $task->appointment != null)--}}
 
-                                    <div class="form-group">
-                                        <label for="">Status : </label>
-                                        <select name="status" class="form-control">
-                                            @foreach($status as $key=>$state)
-                                                <option value="{{$state}}">{{$state}}</option>
-                                                {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="">Status : </label>--}}
+{{--                                        <select name="status" class="form-control">--}}
+{{--                                            @foreach($status as $key=>$state)--}}
+{{--                                                <option value="{{$state}}">{{$state}}</option>--}}
+{{--                                                --}}{{--                                                <option value="{{$key}}">{{$state}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
 
                             </div>
                         </div>
@@ -135,7 +160,7 @@
                         </div>
                     </form>
                 @endif
-                @if($task->Send_to_sincere != null && $task->secure_check != null && $task->appointment != null  &&  $task->status != 0 || $task->status !=null)
+                @if($task->Send_to_sincere != null && $task->secure_check != null && $task->appointment != null  && $task->driver_gaza != null  && $task->driver_israel != null  )
                     <div class="text-center">
                         <a href="{{route('admin.categories.show',$task->category->slug)}}" class="btn btn-info col-5">Finish</a>
                     </div>

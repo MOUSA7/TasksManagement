@@ -232,12 +232,15 @@
 
 <script type="text/javascript">
     $("#place").on('change',function (){
-       if ($(this).val() === "Euro"){
+       if ($(this).val() === "Euro") {
            $("#policy").slideToggle("slow");
            $("#certificate").slideDown("slow");
            $("#invoice").slideDown("slow");
            $("#packing").slideDown("slow");
-       }else {
+           }else if($(this).val() === "Other"){
+           $("#select").hide();
+           $("#other").show();
+           }else {
            $("#policy").hide();
            $("#certificate").hide();
            $("#invoice").hide();
