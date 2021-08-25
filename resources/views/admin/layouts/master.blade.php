@@ -287,7 +287,12 @@
     //
     // });
     $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
-
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+    $('#reservationdate2').datetimepicker({
+        format: 'L'
+    });
 </script>
 
 </body>

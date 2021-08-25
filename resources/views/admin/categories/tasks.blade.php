@@ -34,6 +34,7 @@
                         <th>B/L</th>
                         <th>ETD</th>
                         <th>ETA</th>
+                        <th>Security Check</th>
                         <th>Coordinate</th>
                         <th>Progress</th>
                         <th>Actions</th>
@@ -62,7 +63,8 @@
                             <td>{{$task->policyId}}</td>
                             <td>{{$task->exit_time}}</td>
                             <td>{{$task->arrive_time}}</td>
-                            <td >{{$task->secure_check}}</td>
+                            <td>{{$task->secure_check}}</td>
+                            <td >{{$task->appointment}}</td>
                             <td>
                                 <div class="progress" style=" border-radius: 5px">
                                     @if($task->driver_israel == 0 && $task->driver_gaza == 0)

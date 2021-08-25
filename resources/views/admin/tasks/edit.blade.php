@@ -39,21 +39,20 @@
                                         </span>
                                             @enderror
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="">Shipping Date : </label>
-                                            <input type="date" value="{{$task->exit_time}}" name="exit_time" class="form-control @error('date') is-invalid @enderror">
-                                            @error('date')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <label>Shipping Date:</label>
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                <input type="text" name="exit_time" value="{{$task->exit_time}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group" style="padding-top: 0px">
                                             <label for="">Users : </label>
                                             <select  name="user_id[]" id="category" class="form-control" multiple>
-                                                @foreach($task->users as $user)
+                                                @foreach($users as $user)
                                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                                 @endforeach
                                             </select>
@@ -84,7 +83,7 @@
                                             <label for="">Charge Place : </label>
                                             <select name="place" id="place"  class="form-control" >
                                                 @foreach($charge_place as $key=>$place)
-                                                    <option  value="{{$place}}">{{$place}}</option>
+                                                    <option name="place" value="{{$place}}"{{$place != $task->place ?: 'selected'}}>{{$place}}</option>
                                                     {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
                                                 @endforeach
                                             </select>
@@ -96,13 +95,13 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Arrive Time : </label>
-                                            <input type="date" value="{{$task->arrive_time}}" name="arrive_time" class="form-control @error('arrive_time') is-invalid @enderror">
-                                            @error(' arrive_time')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <label>Arrive Time:</label>
+                                            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                                                <input type="text" name="arrive_time" value="{{$task->arrive_time}}" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
+                                                <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">

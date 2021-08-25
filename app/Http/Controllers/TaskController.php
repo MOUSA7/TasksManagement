@@ -29,12 +29,7 @@ class TaskController extends Controller
     }
 
     public function store(Request $request,$slug){
-//        $this->validate($request,[
-//            'name' => 'required',
-//            'description'=>'required',
-//            'time'=>'required',
-//            'date'=>'required'
-//        ]);
+
         $cat = Category::where('slug',$slug)->first();
 
        $task =  $cat->tasks()->create([
@@ -58,28 +53,23 @@ class TaskController extends Controller
        if ($users = $request->user_id){
         $task->users()->attach($users);
        }
-//       dd($request->all());
+
         return redirect()->route('admin.categories.show',$slug);
     }
 
     public function edit($id){
         $task = Task::findOrFail($id);
         $status = ['initialize','Waiting','Done'];
-        $charge_place = ['china','turkish'];
+        $charge_place = ['Global','Euro','Other'];
         $roles = ['seen','sharing'];
-        return view('admin.tasks.edit',compact('task','charge_place','roles','status'));
+        $users = User::all();
+
+        return view('admin.tasks.edit',compact('task','users','charge_place','roles','status'));
     }
 
     public function update(Request $request,$id){
         $task = Task::findOrFail($id);
 
-        $this->validate($request,[
-            'name' => 'required',
-            'description'=>'required',
-//            'time'=>'required',
-//            'date'=>'required'
-        ]);
-//        dd($task->category->id);
         $task->update([
             'name' => $request->name,
             'description' => $request->description,
@@ -98,7 +88,7 @@ class TaskController extends Controller
             'driver_gaza'=>$request->driver_gaza,
             'driver_israel'=>$request->driver_israel,
         ]);
-
+//        dd($request->all());
         return redirect()->route('admin.categories.show',$task->category->slug);
     }
 

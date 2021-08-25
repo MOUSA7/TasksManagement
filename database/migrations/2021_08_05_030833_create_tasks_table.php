@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('time')->nullable();
-            $table->date('date')->nullable();
+            $table->text('date')->nullable();
             $table->foreignId('category_id')->nullable();
 //            $table->string('slug')->nullable();
             $table->timestamps();

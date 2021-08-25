@@ -121,12 +121,15 @@
                                     @endif
                                 <!--Driver Appointment Coordination!-->
                                 @if($task->appointment == null && $task->Send_to_sincere != null && $task->secure_check != null && $task->driver_israel != null)
-                                    <div class="form-group" id="appoint">
-                                        <label for="">Appointment Coordination to Gaza : </label>
-                                        <input id="date" type="date"
-                                               value="{{$task->appointment ? $task->appointment :''}}"
-                                               name="appointment" class="form-control">
-                                    </div>
+                                        <div class="form-group">
+                                            <label>Appointment Coordination to Gaza :</label>
+                                            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                                                <input type="text" name="appointment" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
+                                                <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
                                     @if($task->driver_gaza == null && $task->appointment != null && $task->Send_to_sincere != null && $task->secure_check != null && $task->driver_israel != null)
                                         <div class="form-check" id="send">

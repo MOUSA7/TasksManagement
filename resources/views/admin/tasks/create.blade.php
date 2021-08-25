@@ -41,13 +41,13 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Shipping Date : </label>
-                                            <input type="date" name="exit_time" class="form-control @error('date') is-invalid @enderror">
-                                            @error('date')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <label>Shipping Date:</label>
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                <input type="text" name="exit_time" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group" style="padding-top: 0px">
@@ -90,7 +90,7 @@
                                             <label for="">Charge Place : </label>
                                             <select name="place" id="place"  class="form-control" >
                                                 @foreach($charge_place as $key=>$place)
-                                                    <option  value="{{$place}}">{{$place}}</option>
+                                                    <option  name="place" value="{{$place}}">{{$place}}</option>
                                                 @endforeach
                                             </select>
                                             @error('place')
@@ -104,14 +104,15 @@
                                             <label for="">Place : </label>
                                             <input type="text" placeholder="Other Place" name="place"  class="form-control">
                                         </div>
+
                                         <div class="form-group">
-                                            <label for="">Arrive Time : </label>
-                                            <input type="date" name="arrive_time" class="form-control @error('arrive_time') is-invalid @enderror">
-                                            @error(' arrive_time')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <label>Arrive Time:</label>
+                                            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                                                <input type="text" name="arrive_time" class="form-control datetimepicker-input" data-target="#reservationdate2"/>
+                                                <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">

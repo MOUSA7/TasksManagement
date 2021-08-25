@@ -17,8 +17,8 @@ class AddManyColumnsTasksTable extends Migration
             //
             $table->string('place')->nullable();
             $table->string('appointment')->nullable();
-            $table->date('exit_time')->nullable();
-            $table->date('arrive_time')->nullable();
+            $table->text('exit_time')->nullable();
+            $table->text('arrive_time')->nullable();
             $table->string('roles')->nullable();
             $table->string('policyId')->nullable();
         });
