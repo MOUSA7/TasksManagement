@@ -58,7 +58,7 @@
                 @endphp
                 @foreach($tasks as $key=>$task )
                     @if($task->category->slug ==="import-task")
-                        @if(\Carbon\Carbon::make($task->arrive_time) >= \Carbon\Carbon::now()->subDays(6))
+                        @if(\Carbon\Carbon::make($task->arrive_time) >= \Carbon\Carbon::now()->subDays(2))
                             <tr class="alert alert-danger">
                             <td>{{$key + 1}}</td>
                             <td>
