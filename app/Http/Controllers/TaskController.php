@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Task;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -48,12 +49,12 @@ class TaskController extends Controller
            'created_certification'=>$request->created_certification,
            'invoice' => $request->invoice,
            'driver_israel'=>$request->driver_israel,
-           'driver_gaza' => $request->driver_israel
+           'driver_gaza' => $request->driver_israel,
+           'packing_list' =>$request->packing_list
         ]);
        if ($users = $request->user_id){
         $task->users()->attach($users);
        }
-
         return redirect()->route('admin.categories.show',$slug);
     }
 
@@ -77,7 +78,7 @@ class TaskController extends Controller
             'date' => $request->date,
             'category_id' => $task->category->id,
             'status'=>$request->status,
-            'place' =>$request->place,
+            'place' =>$request->place == "other"? $request->place2 : $request->place ,
             'appointment'=>$request->appointment,
             'exit_time'=>$request->exit_time,
             'arrive_time'=>$request->arrive_time,
@@ -85,8 +86,7 @@ class TaskController extends Controller
             'policyId'=>$request->policyId,
             'created_certification'=>$request->created_certification,
             'invoice' => $request->invoice,
-            'driver_gaza'=>$request->driver_gaza,
-            'driver_israel'=>$request->driver_israel,
+
         ]);
 //        dd($request->all());
         return redirect()->route('admin.categories.show',$task->category->slug);
@@ -104,9 +104,18 @@ class TaskController extends Controller
     }
     public function ExportUpdate(Request $request,$id){
         $task = Task::findOrFail($id);
-
-        if ($task->Send_to_sincere == 1){
-            $request->Send_to_sincere = 1;
+        if ($request->editor ==1){
+            $task->update([
+                'Send_to_sincere'=>$request->Send_to_sincere,
+                'appointment'=>$request->appointment,
+                'secure_check'=>$request->secure_check,
+                'driver_israel'=>$request->driver_israel,
+                'driver_gaza'=>$request->driver_gaza
+            ]);
+            return redirect()->route('admin.categories.show',$task->category->slug);
+        }
+        if ($task->Send_to_sincere != null){
+            $request->Send_to_sincere = $task->Send_to_sincere;
         }else{
             $task->update(['Send_to_sincere'=>$request->Send_to_sincere]);
         }
@@ -133,7 +142,7 @@ class TaskController extends Controller
         }else{
             $task->update(['driver_gaza'=>$request->driver_gaza]);
         }
-        $task->update(['status'=>$request->status]);
+//        dd($request->all());
         return redirect()->back();
     }
 

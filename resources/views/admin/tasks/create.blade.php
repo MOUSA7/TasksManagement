@@ -89,8 +89,8 @@
                                         <div class="form-group" id="select">
                                             <label for="">Charge Place : </label>
                                             <select name="place" id="place"  class="form-control" >
-                                                @foreach($charge_place as $key=>$place)
-                                                    <option  name="place" value="{{$place}}">{{$place}}</option>
+                                                @foreach($charge_place as $place)
+                                                    <option  value="{{$place}}">{{$place}}</option>
                                                 @endforeach
                                             </select>
                                             @error('place')

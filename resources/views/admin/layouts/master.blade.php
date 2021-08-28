@@ -119,7 +119,10 @@
                             <p>
                                 Employee
                                 <i class="fas fa-angle-left right"></i>
-                                <span class="badge badge-info right">2</span>
+                                @php
+                                $users = \App\Models\User::all();
+                                @endphp
+                                <span class="badge badge-info right">{{$users->count()}}</span>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -140,23 +143,17 @@
                             </p>
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('admin.tasks.index')}}" class="nav-link">
                             <i class="nav-icon fab fa-stack-exchange"></i>
-                            <p>
-                                Tasks Management
-                                <i class="fas fa-angle-left right"></i>
-                                <span class="badge badge-info right">6</span>
+                            <p>Tasks Management
+                                @php
+                                    $tasks = \App\Models\Task::where('created_at','>=','2021-08-24 13:02:21');
+                                @endphp
+                                <span class="right badge badge-info">{{$tasks->count()}}</span>
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{route('admin.tasks.index')}}" class="nav-link">
-                                    <i class="fas fa-tasks"></i>
-                                    <p>Display Tasks</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
 

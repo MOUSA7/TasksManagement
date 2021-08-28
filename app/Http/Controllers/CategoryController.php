@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -49,7 +50,7 @@ class CategoryController extends Controller
 
     public function show($slug){
         $category = Category::whereSlug($slug)->first();
-//        dd($category->tasks);
+//        $cat = $category->tasks()->ExitTime()->get();
         return view('admin.categories.tasks',compact('category'));
     }
 

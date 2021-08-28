@@ -19,4 +19,8 @@ class Task extends Model
     public function users(){
         return $this->belongsToMany(User::class)->withTimestamps();
     }
+
+    public function scopeExitTime($query){
+        $query->orderBy('arrive_time','asc');
+    }
 }

@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
             </ol>
         </div>
@@ -56,12 +56,8 @@
                                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
                                         </div>
+
 
 
                                         <div class="form-group">
@@ -79,19 +75,19 @@
 
                                     <div class="col-sm-6 ">
 
-                                        <div class="form-group">
+                                        <div class="form-group" id="select">
                                             <label for="">Charge Place : </label>
                                             <select name="place" id="place"  class="form-control" >
                                                 @foreach($charge_place as $key=>$place)
-                                                    <option name="place" value="{{$place}}"{{$place != $task->place ?: 'selected'}}>{{$place}}</option>
-                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
+                                                    <option  value="{{$place}}" {{$place != $task->place ?:'selected'}}>{{$place}}</option>
+                                                    {{-- <option value="{{$key}}">{{$state}}</option>--}}
                                                 @endforeach
                                             </select>
-                                            @error('place')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                        </div>
+
+                                        <div class="form-group" id="other">
+                                            <label for="">Place : </label>
+                                            <input type="text" placeholder="Other Place" name="place2"  class="form-control">
                                         </div>
 
                                         <div class="form-group">
@@ -120,8 +116,8 @@
                                         </div>
 
                                         <div class="form-group" id="policy">
-                                            <label for="">PolicyId : </label>
-                                            <input type="text" value="{{$task->policyId}}" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
+                                            <label for="">Bill Of Loading : </label>
+                                            <input type="text" placeholder="Bill Of Loading" value="{{$task->policyId}}" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
                                             @error('policyId')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -130,14 +126,21 @@
                                         </div>
 
                                         <div class="form-check" id="certificate">
-                                            <input  class="form-check-input" name="created_certification" value="{{$task->created_certification == 1?'checked':0}}"  type="checkbox" id="flexCheckDefault">
+                                            <input  class="form-check-input" name="created_certification" value="1"{{$task->created_certification == 1?'checked':0}}  type="checkbox" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 Created Certification
                                             </label>
                                         </div>
 
+                                        <div class="form-check" id="packing">
+                                            <input  class="form-check-input" name="packing_list" value="1"{{$task->packing_list == 1?'checked':0}} type="checkbox" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Packing List
+                                            </label>
+                                        </div>
+
                                         <div class="form-check" id="invoice">
-                                            <input  class="form-check-input" name="invoice" value="{{$task->invoice == 1?'checked':0}}" type="checkbox" id="flexCheckDefault">
+                                            <input  class="form-check-input" name="invoice" value="1" {{$task->invoice == 1?'checked':0}} type="checkbox" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 Invoice
                                             </label>
@@ -150,7 +153,7 @@
 
                         </div>
                         <div class="text-center" id="save">
-                            <input type="submit" class="btn btn-primary col-5" value="Create Task">
+                            <input type="submit" class="btn btn-primary col-5" value="Edit Task">
                         </div>
                     </form>
 
@@ -221,10 +224,18 @@
     #policy{
         display: none;
     }
+    @if($task->place != "Euro")
     #certificate{
         display: none;
     }
     #invoice{
+        display: none;
+    }
+    #packing{
+        display: none;
+    }
+    @endif
+    #other{
         display: none;
     }
 </style>

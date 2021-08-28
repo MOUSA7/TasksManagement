@@ -25,7 +25,7 @@
                             @if($task->Send_to_sincere)
 
                                 <div>
-                                    <p>Send Document : <span class="badge badge-primary col-6 float-right">Document Sent Successfully</span>
+                                    <p>Send Document : <span class="badge badge-primary col-6 float-right" style="font-size: 16px">Document Sent Successfully</span>
                                     </p>
                                 </div>
                             @endif
@@ -33,47 +33,47 @@
                             @if($task->secure_check)
                                 <div id="secure">
                                     <p>Appointment Security Check :
-                                        <span class="badge badge-primary col-4 float-right">{{$task->secure_check}}</span></p>
+                                        <span
+                                            class="badge badge-primary col-4 float-right" style="font-size: 16px">{{$task->secure_check}}</span>
+                                    </p>
 
                                 </div>
                             @endif
 
-                                @if($task->driver_israel)
-                                    <div>
-                                        <p>Driver Israel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <span class="badge badge-dark col-4 float-right">{{$task->driver_israel ==1 ?"Done":''}}</span></p>
+                            @if($task->driver_israel)
+                                <div>
+                                    <p>Driver Israel:
+                                        <span
+                                            class="badge badge-dark col-4 float-right" style="font-size: 16px">{{$task->driver_israel ==1 ?"Done":''}}</span>
+                                    </p>
 
-                                    </div>
-                                @endif
+                                </div>
+                            @endif
 
                             @if($task->appointment)
                                 <div>
-                                    <p>Coordination Into Gaza  :<span
-                                            class="badge badge-primary col-4 float-right">{{$task->appointment}}</span></p>
+                                    <p>Coordination Into Gaza :<span
+                                            class="badge badge-primary col-4 float-right" style="font-size: 16px">{{$task->appointment}}</span>
+                                    </p>
 
                                 </div>
                             @endif
 
-                                @if($task->driver_gaza)
-                                    <div>
-                                        <p>Driver Gaza :
-                                            <span class="badge badge-dark col-4 float-right">{{$task->driver_gaza ==1 ?"Done":''}}</span></p>
+                            @if($task->driver_gaza)
+                                <div>
+                                    <p>Driver Gaza :
+                                        <span
+                                            class="badge badge-dark col-4 float-right" style="font-size: 16px">{{$task->driver_gaza ==1 ?"Done":''}}</span>
+                                    </p>
 
-                                    </div>
-                                @endif
+                                </div>
+                            @endif
 
                             @if($task->status)
                                 <div>
-                                    <p>Status &nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        &nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                                        <span class="badge badge-primary col-4">{{$task->status}}</span></p>
+                                    <p>Status :
+                                        <span class="badge badge-primary col-4" style="font-size: 16px">{{$task->status}}</span>
+                                    </p>
                                 </div>
                             @endif
                         </div>

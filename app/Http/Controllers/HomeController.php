@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,20 +20,19 @@ class HomeController extends Controller
         $this->middleware('auth')->only('dashboard');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
         return view('home');
     }
 
     public function dashboard(){
-        $tasks = Task::all();
+        $category = Category::with(['tasks'=>function($query){
+           return $query->latest();
+        }])->firstOrFail();
+
         $users = User::all();
-        return view('admin.index',compact('tasks','users'));
+        return view('admin.index',compact('category','users'));
     }
 
     public function logout(){

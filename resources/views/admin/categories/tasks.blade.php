@@ -53,18 +53,22 @@
                 @endif
                 </thead>
                 <tbody>
-                @foreach($category->tasks as $key=>$task)
+                @php
+                    $tasks = $category->tasks()->ExitTime()->get();
+                @endphp
+                @foreach($tasks as $key=>$task )
                     @if($task->category->slug ==="import-task")
-                        <tr>
+                        @if(\Carbon\Carbon::make($task->arrive_time) >= \Carbon\Carbon::now()->subDays(6))
+                            <tr class="alert alert-danger">
                             <td>{{$key + 1}}</td>
                             <td>
                                 <a href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
                             </td>
-                            <td>{{$task->policyId}}</td>
-                            <td>{{$task->exit_time}}</td>
-                            <td>{{$task->arrive_time}}</td>
-                            <td>{{$task->secure_check}}</td>
-                            <td >{{$task->appointment}}</td>
+                            <td>{{$task->policyId ?$task->policyId:'Empty'}}</td>
+                            <td>{{$task->exit_time ? $task->exit_time:'Empty'}}</td>
+                            <td>{{$task->arrive_time ? $task->arrive_time:'Empty'}}</td>
+                            <td>{{$task->secure_check ? $task->secure_check:'Empty'}}</td>
+                            <td >{{$task->appointment ? $task->appointment : 'Empty'}}</td>
                             <td>
                                 <div class="progress" style=" border-radius: 5px">
                                     @if($task->driver_israel == 0 && $task->driver_gaza == 0)
@@ -81,11 +85,46 @@
 {{--                            <td>{{$task->policyId}}</td>--}}
                             <td>
                                 <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-primary btn-xs fa fa-edit edit"></a>
-                                <a href="{{route('admin.tasks.editor',$task->id)}}" onclick="return confirm('هل تم أرسالها الى المخلصة '+'{{$task->name}}')" class="btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>
+{{--                                <a href="{{route('admin.tasks.editor',$task->id)}}" onclick="return confirm('هل تريد التعديل على المهمة '+'{{$task->name}}')" class="btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>--}}
+                                <a href="{{route('admin.tasks.editor',$task->id)}}"  class=" btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>
                                 <a href="{{route('admin.tasks.destroy',$task->id)}}"  class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
 
                             </td>
                         </tr>
+                        @else
+                            <tr >
+                                <td>{{$key + 1}}</td>
+                                <td>
+                                    <a href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                </td>
+                                <td>{{$task->policyId ?$task->policyId:'Empty'}}</td>
+                                <td>{{$task->exit_time ? $task->exit_time:'Empty'}}</td>
+                                <td>{{$task->arrive_time ? $task->arrive_time:'Empty'}}</td>
+                                <td>{{$task->secure_check ? $task->secure_check:'Empty'}}</td>
+                                <td >{{$task->appointment ? $task->appointment : 'Empty'}}</td>
+                                <td>
+                                    <div class="progress" style=" border-radius: 5px">
+                                        @if($task->driver_israel == 0 && $task->driver_gaza == 0)
+                                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @elseif($task->driver_israel == 1 && $task->driver_gaza == 0)
+                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @elseif($task->driver_gaza == 1 && $task->driver_israel == 1)
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @else
+                                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                        @endif
+                                    </div>
+                                </td>
+                                {{--                            <td>{{$task->policyId}}</td>--}}
+                                <td>
+                                    <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-primary btn-xs fa fa-edit edit"></a>
+                                    {{--                                <a href="{{route('admin.tasks.editor',$task->id)}}" onclick="return confirm('هل تريد التعديل على المهمة '+'{{$task->name}}')" class="btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>--}}
+                                    <a href="{{route('admin.tasks.editor',$task->id)}}"  class=" btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>
+                                    <a href="{{route('admin.tasks.destroy',$task->id)}}"  class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
+
+                                </td>
+                            </tr>
+                            @endif
                     @else
                         <tr>
                             <td>{{$key + 1}}</td>
