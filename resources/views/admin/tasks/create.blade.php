@@ -186,13 +186,13 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Date : </label>
-                                            <input type="date" name="date" class="form-control @error('date') is-invalid @enderror">
-                                            @error('date')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
+                                            <label>Date :</label>
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                <input type="text" name="date"  class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group" >

@@ -36,15 +36,15 @@
                                     </label>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Security Checking:</label>
-                                    <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
-                                        <input type="text" name="secure_check" value="{{$task->secure_check}}" class="form-control datetimepicker-input" data-target="#reservationdatetime"/>
-                                        <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    <div class="form-group">
+                                        <label>Security Checking:</label>
+                                        <div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+                                            <input type="text" name="secure_check" value="{{$task->secure_check}}" class="form-control datetimepicker-input" data-target="#reservationdatetime"/>
+                                            <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
                         <!--Driver Israel!-->
                                 <div class="form-check" >

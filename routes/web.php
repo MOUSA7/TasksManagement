@@ -43,6 +43,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::get('tasks/{id}/show',[\App\Http\Controllers\TaskController::class,'show'])->name('tasks.show');
     Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('tasks.destroy');
     Route::get('tasks/export/create',[\App\Http\Controllers\TaskController::class,'ExportStore'])->name('tasks.export');
+    Route::POST('tasks/export/excel',[\App\Http\Controllers\TaskController::class,'excel'])->name('tasks.excel');
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

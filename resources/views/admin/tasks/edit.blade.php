@@ -173,8 +173,13 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Date : </label>
-                                            <input type="date" value="{{$task->date}}" name="date" class="form-control">
+                                            <label>Arrive Time:</label>
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                <input type="text" name="date" value="{{$task->date}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">

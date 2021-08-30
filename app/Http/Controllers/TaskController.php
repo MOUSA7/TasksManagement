@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class TaskController extends Controller
 {
@@ -96,6 +97,11 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->delete();
         return redirect()->back();
+    }
+
+    public function excel(){
+        $tasks = Task::all();
+        return (new FastExcel($tasks))->download('file.xlsx');
     }
     public function ExportEdit($id){
         $task = Task::findOrFail($id);
