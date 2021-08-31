@@ -23,7 +23,7 @@ class TaskController extends Controller
         $category = Category::whereSlug($slug)->first();
         $charge_place = ['Global','Euro','Other'];
         $status = ['initialize','Waiting','Done'];
-        $status2 = ['High','Medium','Low'];
+        $status2 = ['Low','Medium','High'];
         $roles = ['seen','sharing'];
 //        $status = ['initialize','Waiting','Done'];
 //        dd($status->key);
@@ -64,7 +64,7 @@ class TaskController extends Controller
     public function edit($id){
         $task = Task::findOrFail($id);
         $status = ['initialize','Waiting','Done'];
-        $status2 = ['High','Medium','Low'];
+        $status2 = ['Low','Medium','High'];
         $charge_place = ['Global','Euro','Other'];
         $roles = ['seen','sharing'];
         $users = User::all();
