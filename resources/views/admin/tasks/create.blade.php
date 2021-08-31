@@ -24,8 +24,11 @@
                <form action="{{route('admin.tasks.store',$category->slug)}}" method="post">
                         @csrf
                         <div class="card">
-                            <div class="card-header"><b>{{ __('Create Task') }}</b></div>
-
+                            <div class="card-header">
+                                <div class="text-center" id="save">
+                                    <input type="submit" class="btn btn-primary col-5" value="Create Task">
+                                </div>
+                            </div>
                             <div class="card-body" id="import_form">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -85,7 +88,6 @@
                                     </div>
 
                                     <div class="col-sm-6 ">
-
                                         <div class="form-group" id="select">
                                             <label for="">Charge Place : </label>
                                             <select name="place" id="place"  class="form-control" >
@@ -93,11 +95,6 @@
                                                     <option  value="{{$place}}">{{$place}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('place')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
                                         </div>
 
                                         <div class="form-group" id="other">
@@ -130,6 +127,16 @@
                                             @enderror
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="">Priority : </label>
+                                            <select name="status"   class="form-control" >
+                                                @foreach($status2 as $status)
+                                                    <option  value="{{$status}}">{{$status}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
                                         <div class="form-group" id="policy">
                                             <label for="">Bill Of Loading : </label>
                                             <input type="text" placeholder="Bill Of Loading" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
@@ -160,9 +167,7 @@
 
 
                         </div>
-                        <div class="text-center" id="save">
-                            <input type="submit" class="btn btn-primary col-5" value="Create Task">
-                        </div>
+
                     </form>
 
                 @else
@@ -208,6 +213,8 @@
                                         </span>
                                             @enderror
                                         </div>
+
+
                                     </div>
 
                                     <div class="col-sm-6 ">
@@ -223,6 +230,15 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="">Priority : </label>
+                                            <select name="status"   class="form-control" >
+                                                @foreach($status2 as $status)
+                                                    <option  value="{{$status}}">{{$status}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="">Description :</label>
                                             <textarea name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
                                             @error('description')
@@ -232,20 +248,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="">Status : </label>
-                                            <select name="status"  class="form-control" >
-                                                @foreach($status as $key=>$state)
-                                                    <option value="0">{{$state}}</option>
-                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
-                                                @endforeach
-                                            </select>
-                                            @error('date')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
-                                        </div>
+
 
                                     </div>
                                 </div>

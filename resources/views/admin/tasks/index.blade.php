@@ -35,7 +35,15 @@
                 @foreach($tasks as $key=>$task)
                    <tr>
                     <td>{{$key +1}}</td>
-                    <td>{{$task->name}}</td>
+                    <td>
+                        @if($task->status == "High")
+                            <a class="badge-danger">{{$task->name}}</a>
+                        @elseif($task->status == "Medium")
+                            <a class="badge-warning">{{$task->name}}</a>
+                        @else
+                            <a>{{$task->name}}</a>
+                        @endif
+                    </td>
                        @if(\Carbon\Carbon::make($task->date)  >= \Carbon\Carbon::now()->subDays(2))
                        <td class="alert-warning">{{$task->date ? $task->date :$task->arrive_time}}</td>
                        @else

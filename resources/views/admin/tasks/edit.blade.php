@@ -58,8 +58,6 @@
                                             </select>
                                         </div>
 
-
-
                                         <div class="form-group">
                                             <label for="">Description :</label>
                                             <textarea name="description" class="form-control @error('description') is-invalid @enderror">
@@ -115,6 +113,15 @@
                                             @enderror
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="">Priority : </label>
+                                            <select name="status"   class="form-control" >
+                                                @foreach($status2 as $status)
+                                                    <option  value="{{$status}}"{{$status != $task->status ?:'selected'}}>{{$status}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
                                         <div class="form-group" id="policy">
                                             <label for="">Bill Of Loading : </label>
                                             <input type="text" placeholder="Bill Of Loading" value="{{$task->policyId}}" name="policyId" class="form-control @error('policyId') is-invalid @enderror">
@@ -156,7 +163,6 @@
                             <input type="submit" class="btn btn-primary col-5" value="Edit Task">
                         </div>
                     </form>
-
                 @else
                     <form action="{{route('admin.tasks.update',$task->id)}}" method="post">
                         @csrf
@@ -173,7 +179,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Arrive Time:</label>
+                                            <label>Date:</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                                 <input type="text" name="date" value="{{$task->date}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
@@ -183,19 +189,14 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="">Status : </label>
-                                            <select name="status"  class="form-control" >
-                                                @foreach($status as $key=>$state)
-                                                    <option value="{{$key}}">{{$state}}</option>
-                                                    {{--                                                <option value="{{$key}}">{{$state}}</option>--}}
+                                            <label for="">Priority : </label>
+                                            <select name="status"   class="form-control" >
+                                                @foreach($status2 as $status)
+                                                    <option  value="{{$status}}"{{$status != $task->status ?:'selected'}}>{{$status}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('status')
-                                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                        </span>
-                                            @enderror
                                         </div>
+
 
                                     </div>
                                     <div class="col-sm-6">
@@ -204,10 +205,12 @@
                                             <input type="time" value="{{$task->time}}" name="time" class="form-control">
                                         </div>
 
+                                        <br>
                                         <div class="form-group">
                                             <label for="">Description :</label>
                                             <textarea name="description" class="form-control">{{$task->description}}</textarea>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +220,6 @@
 
                         </div>
                     </form>
-
                 @endif
 
             </div>

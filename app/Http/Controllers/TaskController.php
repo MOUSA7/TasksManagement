@@ -22,12 +22,14 @@ class TaskController extends Controller
 
         $category = Category::whereSlug($slug)->first();
         $charge_place = ['Global','Euro','Other'];
-        $status = ['initialize'];
+        $status = ['initialize','Waiting','Done'];
+        $status2 = ['High','Medium','Low'];
         $roles = ['seen','sharing'];
 //        $status = ['initialize','Waiting','Done'];
 //        dd($status->key);
         $users = User::all();
-        return view('admin.tasks.create',compact('category','roles','charge_place','users','status'));
+        return view('admin.tasks.create',compact('category',
+           'status2' ,'roles','charge_place','users','status'));
     }
 
     public function store(Request $request,$slug){
@@ -62,11 +64,13 @@ class TaskController extends Controller
     public function edit($id){
         $task = Task::findOrFail($id);
         $status = ['initialize','Waiting','Done'];
+        $status2 = ['High','Medium','Low'];
         $charge_place = ['Global','Euro','Other'];
         $roles = ['seen','sharing'];
         $users = User::all();
 
-        return view('admin.tasks.edit',compact('task','users','charge_place','roles','status'));
+        return view('admin.tasks.edit',compact('task',
+              'status2','users','charge_place','roles','status'));
     }
 
     public function update(Request $request,$id){

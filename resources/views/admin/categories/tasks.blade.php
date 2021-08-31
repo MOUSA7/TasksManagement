@@ -69,21 +69,19 @@
                             <tr>
                             <td>{{$key + 1}}</td>
                             <td>
-                                <a href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                @if($task->status == "High")
+                                <a class="badge-danger" href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                @elseif($task->status == "Medium")
+                                <a class="badge-warning" href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                @else
+                                    <a href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                @endif
                             </td>
                             <td>{{$task->policyId ?$task->policyId:'Empty'}}</td>
                             <td>{{$task->exit_time ? $task->exit_time:'Empty'}}</td>
-                                @if((\Carbon\Carbon::make($task->arrive_time) >= \Carbon\Carbon::now()->subDays(2)) && $task->secure_check == null)
-                                    <td class="alert-danger">{{$task->arrive_time ? $task->arrive_time:'Empty'}}</td>
-                                @else
                                 <td>{{$task->arrive_time ? $task->arrive_time:'Empty'}}</td>
-                                @endif
-                                @if(\Carbon\Carbon::make($task->secure_check) >= \Carbon\Carbon::now()->subDays(2))
-                                <td class="badge-danger">{{$task->secure_check ? $task->secure_check:'Empty'}}</td>
-                                @else
                                 <td>{{$task->secure_check ? $task->secure_check:'Empty'}}</td>
-                                @endif
-                            <td >{{$task->appointment ? $task->appointment : 'Empty'}}</td>
+                            <td>{{$task->appointment ? $task->appointment : 'Empty'}}</td>
                             <td>
                                 <div class="progress" style=" border-radius: 5px">
                                     @if($task->driver_israel == 0 && $task->driver_gaza == 0)
@@ -109,40 +107,17 @@
                             <!-- End IF Arrive Time !-->
 
                     @else
-                        @if($task->date >= \Carbon\Carbon::now()->subDays(3))
-                            <tr class="alert-warning">
-                                <td>{{$key + 1}}</td>
-                                <td>{{$task->name}}</td>
-                                <td>{{$task->date}}</td>
-                                <td>{{$task->time}}</td>
-                                <td>{{Str::limit($task->description,30)}}</td>
-                                <td>{{$task->category->name}}</td>
-                                <td>
-
-                                    <div class="progress" style=" border-radius: 5px">
-                                        @if($task->status == 0)
-                                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @elseif($task->status == 1)
-                                            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @elseif($task->status == 2)
-                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @else
-                                            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                        @endif
-                                    </div>
-
-                                </td>
-                                <td>
-                                    <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-primary btn-xs fa fa-edit edit"></a>
-                                    {{--                        <a href="{{route('admin.categories.show',$category->slug)}}" class="btn btn-info btn-xs fa fa-eye"></a>--}}
-                                    <a href="{{route('admin.tasks.destroy',$task->id)}}"  class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
-
-                                </td>
-                            </tr>
-                        @else
                             <tr>
                                 <td>{{$key + 1}}</td>
-                                <td>{{$task->name}}</td>
+                                <td>
+                                    @if($task->status == "High")
+                                        <a class="badge-danger">{{$task->name}}</a>
+                                    @elseif($task->status == "Medium")
+                                        <a class="badge-warning">{{$task->name}}</a>
+                                    @else
+                                        <a>{{$task->name}}</a>
+                                    @endif
+                                </td>
                                 <td>{{$task->date}}</td>
                                 <td>{{$task->time}}</td>
                                 <td>{{Str::limit($task->description,30)}}</td>
@@ -169,7 +144,7 @@
 
                                 </td>
                             </tr>
-                        @endif
+
                     @endif
                 @endforeach
                 </tbody>
