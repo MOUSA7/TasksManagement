@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
+
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
@@ -208,6 +209,7 @@
 <div>
     @yield('modal')
 </div>
+
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
@@ -292,5 +294,10 @@
     });
 </script>
 
+<script>
+    $(document).ready(function(){
+        $(".bd-example-modal-lg").modal("show")
+    });
+</script>
 </body>
 </html>

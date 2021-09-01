@@ -14,7 +14,7 @@ class TaskController extends Controller
 {
 
     public function index(){
-        $tasks = Task::all();
+        $tasks = Task::OrderBy('date','desc')->OrderBy('arrive_time','desc')->get();
         return view('admin.tasks.index',compact('tasks'));
     }
 

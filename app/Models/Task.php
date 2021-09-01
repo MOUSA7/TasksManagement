@@ -22,7 +22,12 @@ class Task extends Model
     }
 
     public function scopeExitTime($query){
-        $query->orderBy('arrive_time','asc');
+            $query->orderBy('arrive_time','asc');
     }
+
+    public function scopeDateTime($query){
+        $query->orderBy('date','asc');
+    }
+
 
 }

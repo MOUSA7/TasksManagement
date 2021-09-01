@@ -86,5 +86,47 @@
         <!-- ./col -->
         <!-- ./col -->
     </div>
+{{--    <div class="text-center">--}}
+{{--        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>--}}
+{{--    </div>--}}
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Priority</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @php
+                    //$tasks = $category->tasks->sortBy('id')->values()->all();
+                      $tasks = \App\Models\Task::OrderBy('id','desc')->get();
+                    @endphp
+                    @foreach($tasks as $task)
+                        @if(\Carbon\Carbon::make($task->date)  == \Carbon\Carbon::today())
+                    <tr>
+                        <th scope="row">{{$task->id}}</th>
+                        <td>
+                            <a href="{{route('admin.tasks.edit',$task->id)}}">{{$task->name}}</a>
+                        </td>
+                        <td>{{$task->date ? $task->date :$task->arrive_time}}</td>
+                        <td>{{$task->status}}</td>
+                    </tr>
+                    @endif
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 @stop
