@@ -92,7 +92,8 @@
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-center">
+                        <h4 class="modal-title w-100  btn-info" >  Today Task</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -110,7 +111,6 @@
                     @php
                     //$tasks = $category->tasks->sortBy('id')->values()->all();
                       $tasks = \App\Models\Task::where('date',\Carbon\Carbon::today())->OrderBy('id','desc')->get();
-                      //dd($tasks)
                     @endphp
                     @forelse($tasks as $task)
                         @if(\Carbon\Carbon::make($task->date)  == \Carbon\Carbon::today())
