@@ -45,9 +45,9 @@
                         @endif
                     </td>
                        @if(\Carbon\Carbon::make($task->date)  >= \Carbon\Carbon::now()->subDays(2))
-                       <td class="alert-warning">{{$task->date ? $task->date :$task->arrive_time}}</td>
+                       <td class="alert-warning">{{date('d/m/Y',strtotime($task->date ? $task->date :$task->arrive_time))}}</td>
                        @else
-                       <td>{{$task->date ? $task->date :$task->arrive_time}}</td>
+                       <td>{{date('d/m/Y',strtotime($task->date ? $task->date :$task->arrive_time))}}</td>
                        @endif
                     <td>{{$task->time ? $task->time : 'Empty'}}</td>
                     <td>{{Str::limit($task->description,30)}}</td>

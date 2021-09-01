@@ -109,20 +109,26 @@
                     <tbody>
                     @php
                     //$tasks = $category->tasks->sortBy('id')->values()->all();
-                      $tasks = \App\Models\Task::OrderBy('id','desc')->get();
+                      $tasks = \App\Models\Task::where('date',\Carbon\Carbon::today())->OrderBy('id','desc')->get();
+                      //dd($tasks)
                     @endphp
-                    @foreach($tasks as $task)
+                    @forelse($tasks as $task)
                         @if(\Carbon\Carbon::make($task->date)  == \Carbon\Carbon::today())
                     <tr>
                         <th scope="row">{{$task->id}}</th>
                         <td>
                             <a href="{{route('admin.tasks.edit',$task->id)}}">{{$task->name}}</a>
                         </td>
-                        <td>{{$task->date ? $task->date :$task->arrive_time}}</td>
+                        <td>{{date('d/m/Y',strtotime($task->date))}}</td>
                         <td>{{$task->status}}</td>
                     </tr>
                     @endif
-                    @endforeach
+                    @empty
+                        <tr>
+                            <h2 class="text-center">Not Found</h2>
+                        </tr>
+                    @endforelse
+
                     </tbody>
                 </table>
             </div>

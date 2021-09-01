@@ -123,7 +123,7 @@
                                 <a>{{$task->name}}</a>
                             @endif
                         </td>
-                        <td>{{$task->date}}</td>
+                        <td>{{date('d/m/Y',strtotime($task->date))}}</td>
                         <td>{{$task->time}}</td>
                         <td>{{Str::limit($task->description,30)}}</td>
                         <td>{{$task->category->name}}</td>
