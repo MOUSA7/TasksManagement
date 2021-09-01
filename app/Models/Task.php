@@ -26,7 +26,7 @@ class Task extends Model
     }
 
     public function scopeDateTime($query){
-        $query->orderBy('date','asc');
+        $query->orderBy('date','desc');
     }
 
 
