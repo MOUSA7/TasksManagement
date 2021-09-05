@@ -49,11 +49,15 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group" style="padding-top: 0px">
                                             <label for="">Users : </label>
                                             <select  name="user_id[]" id="category" class="form-control" multiple>
+
                                                 @foreach($users as $user)
-                                                    <option value="{{$user->id}}"{{!in_array($task->users->pluck('id')->toArray(),$users->pluck('id')->toArray()) != $user->id?:'selected'}}>{{$user->name}}</option>
+                                                    <option value="{{$user->id}}"   {{in_array($user->id,($task->users->pluck('id')->toArray())) ?"selected":""}}>
+                                                        {{$user->name}}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
