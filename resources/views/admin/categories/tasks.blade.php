@@ -100,7 +100,7 @@
                                 <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-primary btn-xs fa fa-edit edit"></a>
 {{--                                <a href="{{route('admin.tasks.editor',$task->id)}}" onclick="return confirm('هل تريد التعديل على المهمة '+'{{$task->name}}')" class="btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>--}}
                                 <a href="{{route('admin.tasks.editor',$task->id)}}"  class=" btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>
-                                <a href="{{route('admin.tasks.destroy',$task->id)}}"  class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
+                                <a href="{{route('admin.tasks.destroy',$task->id)}}" onclick="return confirm('هل تريد حذف هذة المهمة '+'{{$task->name}}')" class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
 
                             </td>
                         </tr>
@@ -130,12 +130,12 @@
                         <td>
 
                             <div class="progress" style=" border-radius: 5px">
-                                @if($task->status == 0)
+                                @if($task->status == "Low")
                                     <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                @elseif($task->status == 1)
+                                @elseif($task->status == "Medium")
                                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                @elseif($task->status == 2)
-                                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                @elseif($task->status == "High")
+                                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 @else
                                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
                                 @endif

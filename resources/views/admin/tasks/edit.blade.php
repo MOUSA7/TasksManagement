@@ -13,6 +13,7 @@
         </div>
     </div>
 @endsection
+{{--@dd($users->pluck('name')->toArray(),$task->users->pluck('name')->toArray())--}}
 
 @section('content')
 
@@ -48,12 +49,11 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="form-group" style="padding-top: 0px">
                                             <label for="">Users : </label>
                                             <select  name="user_id[]" id="category" class="form-control" multiple>
                                                 @foreach($users as $user)
-                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    <option value="{{$user->id}}"{{!in_array($task->users->pluck('id')->toArray(),$users->pluck('id')->toArray()) != $user->id?:'selected'}}>{{$user->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -177,11 +177,10 @@
                                             <label for="">Name : </label>
                                             <input type="text" name="name" value="{{$task->name}}" class="form-control">
                                         </div>
-
                                         <div class="form-group">
                                             <label>Date:</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                <input type="text" name="date" value="{{$task->date}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <input type="text" name="date" value="{{\Carbon\Carbon::parse($task->date)->format('d/m/Y')}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>

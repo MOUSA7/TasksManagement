@@ -71,8 +71,8 @@
 
                             @if($task->status)
                                 <div>
-                                    <p>Status :
-                                        <span class="badge badge-primary col-4" style="font-size: 16px">{{$task->status}}</span>
+                                    <p>Priority :
+                                        <span class="badge badge-primary col-4 float-right" style="font-size: 16px">{{$task->status}}</span>
                                     </p>
                                 </div>
                             @endif

@@ -14,7 +14,8 @@ class TaskController extends Controller
 {
 
     public function index(){
-        $tasks = Task::OrderBy('date','desc')->OrderBy('arrive_time','desc')->get();
+        $tasks = Task::OrderBy('date','desc')->OrderBy('arrive_time','desc')->paginate(6);
+
         return view('admin.tasks.index',compact('tasks'));
     }
 
@@ -91,6 +92,7 @@ class TaskController extends Controller
             'policyId'=>$request->policyId,
             'created_certification'=>$request->created_certification,
             'invoice' => $request->invoice,
+            'packing_list' => $request->packing_list
 
         ]);
 //        dd($request->all());
@@ -160,7 +162,21 @@ class TaskController extends Controller
 //        $arrive = Task::whereBetween('created_at',[now()->subDays(2),now()])->get();
 //        dd($arrive);
         $task = Task::findOrFail($id);
-        $status = ['initialize','Waiting','Done'];
-        return view('admin.tasks.show',compact('task','status'));
+        if ($task->category->slug == "import-task"){
+            $status = ['initialize','Waiting','Done'];
+            return view('admin.tasks.show',compact('task','status'));
+        }else{
+           return response()->json($task);
+        }
+    }
+
+    public function archive(){
+        $trashes = Task::onlyTrashed()->get();
+        return view('admin.tasks.archive',compact('trashes'));
+    }
+
+    public function restore($id){
+        $trash = Task::onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back();
     }
 }

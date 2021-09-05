@@ -159,6 +159,12 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('admin.tasks.archive')}}" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
+                            <p>Archive</p>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a href="{{route('logout')}}" class="nav-link">
@@ -297,9 +303,13 @@
 </script>
 
 <script>
+
+
     $(document).ready(function(){
         $(".bd-example-modal-lg").modal("show")
+
     });
+
 </script>
 </body>
 </html>

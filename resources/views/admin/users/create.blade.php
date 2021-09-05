@@ -68,9 +68,14 @@
                                             <span class="input-group-text">Upload</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
+                                            <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="inputGroupFile01">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                         </div>
+                                        @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
 
                                 </div>
