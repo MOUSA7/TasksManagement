@@ -123,7 +123,12 @@
                                 <a>{{$task->name}}</a>
                             @endif
                         </td>
-                        <td>{{date('d/m/Y',strtotime($task->date))}}</td>
+                        @if($task->date != null)
+                        <td>{{\Carbon\Carbon::parse($task->date ?$task->date : "Empty")->format('d/m/Y')}}</td>
+                        @else
+                            <td>Empty</td>
+                        @endif
+
                         <td>{{$task->time}}</td>
                         <td>{{Str::limit($task->description,30)}}</td>
                         <td>{{$task->category->name}}</td>
