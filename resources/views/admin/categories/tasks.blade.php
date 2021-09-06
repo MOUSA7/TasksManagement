@@ -17,12 +17,7 @@
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
             </ol>
-            <br>
-            <br>
-            <form class="d-inline" action="{{route('admin.tasks.excel')}}" method="post">
-                @csrf
-                <input type="submit" class="btn btn-primary float-right col-4" value="Export Excel">
-            </form>
+
         </div>
 
     </div>

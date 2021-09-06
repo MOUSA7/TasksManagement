@@ -14,7 +14,7 @@ class TaskController extends Controller
 {
 
     public function index(){
-        $tasks = Task::OrderBy('date','desc')->OrderBy('arrive_time','desc')->paginate(6);
+        $tasks = Task::OrderBy('date','desc')->OrderBy('arrive_time','desc')->paginate(8);
 
         return view('admin.tasks.index',compact('tasks'));
     }
