@@ -5,17 +5,26 @@
         <div class="col-sm-6">
             <h1>Tasks Management</h1>
         </div>
+
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
             </ol>
             <br>
+{{--            <Search-Component></Search-Component>--}}
             <br>
             <form class="d-inline" action="{{route('admin.tasks.excel')}}" method="post">
                 @csrf
-                <input type="submit" class="btn btn-primary float-right col-4" value="Export Excel">
+                <input type="submit" class="btn btn-primary float-right col-5" value="Export Excel">
             </form>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                <Search-Component></Search-Component>
         </div>
     </div>
 @endsection

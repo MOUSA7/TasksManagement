@@ -47,7 +47,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::get('tasks/archive/all',[\App\Http\Controllers\TaskController::class,'archive'])->name('tasks.archive');
     Route::get('tasks/{id}/trash',[\App\Http\Controllers\TaskController::class,'restore'])->name('tasks.restore');
     Route::get('tasks/restore/trash',[\App\Http\Controllers\TaskController::class,'restore'])->name('tasks.restore');
-
+    Route::get('tasks/all/search',[\App\Http\Controllers\TaskController::class,'SearchTasks'])->name('tasks.search');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

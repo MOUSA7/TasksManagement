@@ -179,4 +179,11 @@ class TaskController extends Controller
         $trash = Task::onlyTrashed()->findOrFail($id)->restore();
         return redirect()->back();
     }
+    public function SearchTasks(Request $request){
+        $keyword = $request->get('keyword');
+        $tasks = Task::where('name','like','%'.$keyword.'%')->take(4)->get();
+//        $blogs = Blog::where('title','like','%'.$keyword.'%')
+//                    ->orWhere('body','like','%'.$keyword.'%')->limit(4)->get();
+        return response()->json($tasks);
+    }
 }
