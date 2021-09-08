@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <input class="form-control form-control-lg active" v-model="keyword" type="text" placeholder="Tasks Search Here ..."
+        <input class="form-control form-control-lg"autofocus v-model="keyword" type="search" placeholder="Tasks Search Here ..."
                aria-label="Search" v-on:keyup="SearchBlogs">
         <ul class="list-group">
             <li class="list-group-item" v-for="result in results">

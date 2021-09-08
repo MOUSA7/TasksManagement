@@ -37609,9 +37609,10 @@ var render = function() {
           expression: "keyword"
         }
       ],
-      staticClass: "form-control form-control-lg active",
+      staticClass: "form-control form-control-lg",
       attrs: {
-        type: "text",
+        autofocus: "",
+        type: "search",
         placeholder: "Tasks Search Here ...",
         "aria-label": "Search"
       },
