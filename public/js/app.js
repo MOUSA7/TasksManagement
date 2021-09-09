@@ -1901,7 +1901,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       keyword: '',
-      results: []
+      results: [],
+      tasks: []
     };
   },
   methods: {
@@ -1920,6 +1921,19 @@ __webpack_require__.r(__webpack_exports__);
           _this.results = response.data;
         });
       }
+    },
+    ShowModal: function ShowModal(result) {
+      // console.log(result.id)
+      axios.get('tasks/' + result.id + '/show', {
+        params: {
+          data: this.tasks
+        }
+      }).then(function (response) {
+        console.log(response.data['name']);
+        $('#show-Modal').modal('show');
+        $("#show-Modal .modal-body").append('<h4>' + response.data['name'] + '</h4>');
+        $("#show-Modal .modal-body").empty().append('<h4>' + 'Task Name : ' + response.data['name'] + '</h4>' + '<br>' + '<h4>' + 'Description : ' + response.data['description'] + '</h4>'); // this.results =task
+      });
     }
   }
 });
@@ -37632,12 +37646,16 @@ var render = function() {
       "ul",
       { staticClass: "list-group" },
       _vm._l(_vm.results, function(result) {
-        return _c("li", { staticClass: "list-group-item" }, [
+        return _c("li", { key: result.id, staticClass: "list-group-item" }, [
           _c(
             "a",
             {
               staticStyle: { color: "black" },
-              attrs: { href: "tasks" + "/" + result.id + "/show" }
+              on: {
+                click: function($event) {
+                  return _vm.ShowModal(result)
+                }
+              }
             },
             [
               _vm._v(

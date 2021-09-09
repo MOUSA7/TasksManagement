@@ -159,15 +159,15 @@ class TaskController extends Controller
     }
 
     public function show($id){
-//        $arrive = Task::whereBetween('created_at',[now()->subDays(2),now()])->get();
-//        dd($arrive);
+//
         $task = Task::findOrFail($id);
-        if ($task->category->slug == "import-task"){
-            $status = ['initialize','Waiting','Done'];
-            return view('admin.tasks.show',compact('task','status'));
-        }else{
            return response()->json($task);
-        }
+    }
+
+    public function display($id){
+      $task = Task::findOrFail($id);
+        $status = ['initialize','Waiting','Done'];
+        return view('admin.tasks.show',compact('task','status'));
     }
 
     public function archive(){

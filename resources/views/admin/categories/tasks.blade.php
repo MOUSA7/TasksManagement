@@ -65,11 +65,11 @@
                             <td>{{$key + 1}}</td>
                             <td>
                                 @if($task->status == "High")
-                                <a class="badge-danger" href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                <a class="badge-danger" href="{{route('admin.tasks.display',$task->id)}}">{{$task->name}}</a>
                                 @elseif($task->status == "Medium")
-                                <a class="badge-warning" href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                <a class="badge-warning" href="{{route('admin.tasks.display',$task->id)}}">{{$task->name}}</a>
                                 @else
-                                    <a href="{{route('admin.tasks.show',$task->id)}}">{{$task->name}}</a>
+                                    <a href="{{route('admin.tasks.display',$task->id)}}">{{$task->name}}</a>
                                 @endif
                             </td>
                             <td>{{$task->policyId ?$task->policyId:'Empty'}}</td>

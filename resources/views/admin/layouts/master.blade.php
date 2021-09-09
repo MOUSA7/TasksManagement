@@ -217,7 +217,7 @@
 <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<script src="{{ mix('js/app.js') }}"></script>
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}
 <script>
     $("#category").select2();
 </script>
