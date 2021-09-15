@@ -39,7 +39,7 @@
                 <div class="inner">
 {{--                    <h3>53<sup style="font-size: 20px">%</sup></h3>--}}
                     <h3>
-                        {{$category->where('slug','meeting-task')->first()->tasks()->count()}}
+                        {{$category->where('slug','meeting-task')->first()->tasks()->count() ?? 0}}
                     </h3>
 
                     <p>Meeting Tasks</p>
