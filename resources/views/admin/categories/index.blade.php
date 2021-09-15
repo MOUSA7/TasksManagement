@@ -31,6 +31,7 @@
                     <th>ID</th>
                     <th>name</th>
                     <th>Date</th>
+                    <th>Tasks Cont</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -42,6 +43,7 @@
                         <a href="{{route('admin.categories.show',$category->slug)}}">{{$category->name}}</a>
                     </td>
                     <td>{{$category->created_at->diffForHumans()}}</td>
+                    <td><p class="badge badge-dark" style="margin-left: 20px">{{$category->tasks->count()}}</p></td>
                     <td>
                         <a class="btn btn-primary btn-xs fa fa-edit edit" data-id="{{$category->id}}"  ></a>
                         @if($category->tasks->count() >= 0)

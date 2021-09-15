@@ -120,7 +120,7 @@
                         </td>
                         <td>
                             <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-xs btn-primary">Edit</a>
-                            <a href="{{url('admin/tasks/'.$task->id.'/delete')}}" class="btn btn-xs btn-dark"
+                            <a href="{{url('admin/tasks/'.$task->id.'/archive')}}" class="btn btn-xs btn-dark"
                                onclick="return confirm('هل تريد إرسال المهمة الى الأرشيف'+'{{$task->name}}')">Archive</a>
                             @if($task->category->slug =="import-task")
                                 <a href="{{route('admin.tasks.editor',$task->id)}}"  class="btn btn-xs btn-info " >Show</a>
@@ -158,9 +158,9 @@
         </div>
     </div>
     <div id="show-Modal"></div>
-    <script src="{{ mix('js/app.js') }}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
         $(document).on('click','.show',function (){
             // alert("Done")
@@ -173,6 +173,7 @@
             });
         });
     </script>
+    <script src="{{ mix('js/app.js') }}"></script>
 @endsection
 
 

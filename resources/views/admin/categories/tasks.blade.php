@@ -4,6 +4,8 @@
     <div class="row mb-2">
         <div class="col-sm-4">
             <h1>{{\Illuminate\Support\Str::upper($category->slug)}}</h1>
+            <br>
+            <a href="{{ URL::previous() }}" class="btn btn-default" style="margin-top: -8px;"> <i class="fa fa-arrow-left"></i> Go Back</a>
         </div>
         <div class="col-sm-3">
             <br>
@@ -14,7 +16,7 @@
 
         <div class="col-sm-5">
             <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
                 <li class="breadcrumb-item active">Tasks</li>
             </ol>
 
@@ -95,7 +97,7 @@
                                 <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-primary btn-xs fa fa-edit edit"></a>
 {{--                                <a href="{{route('admin.tasks.editor',$task->id)}}" onclick="return confirm('هل تريد التعديل على المهمة '+'{{$task->name}}')" class="btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>--}}
                                 <a href="{{route('admin.tasks.editor',$task->id)}}"  class=" btn btn-info btn-xs "><i class="fas fa-arrow-right"></i></a>
-                                <a href="{{route('admin.tasks.destroy',$task->id)}}" onclick="return confirm('هل تريد حذف هذة المهمة '+'{{$task->name}}')" class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
+                                <a href="{{route('admin.tasks.destroy',$task->id)}}" onclick="return confirm('هل تريد إرسال هذة المهمة الى الأرشيف '+'{{$task->name}}')" class="confirm btn btn-dark btn-xs "><i class="fas fa-archive"></i></a>
 
                             </td>
                         </tr>
@@ -145,7 +147,7 @@
                         <td>
                             <a href="{{route('admin.tasks.edit',$task->id)}}" class="btn btn-primary btn-xs fa fa-edit edit"></a>
                             {{--                        <a href="{{route('admin.categories.show',$category->slug)}}" class="btn btn-info btn-xs fa fa-eye"></a>--}}
-                            <a href="{{route('admin.tasks.destroy',$task->id)}}"  class="confirm btn btn-danger btn-xs fa fa-trash-alt"></a>
+                            <a href="{{route('admin.tasks.destroy',$task->id)}}" onclick="return confirm('هل تريد إرسال هذة المهمة الى الأرشيف '+'{{$task->name}}')" class="confirm btn btn-dark btn-xs"><i class="fas fa-archive"></i></a>
 
                         </td>
                     </tr>

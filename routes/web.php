@@ -41,12 +41,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function (){
     Route::PUT('tasks/{id}',[\App\Http\Controllers\TaskController::class,'update'])->name('tasks.update');
     Route::PUT('tasks/{id}/editor',[\App\Http\Controllers\TaskController::class,'ExportUpdate'])->name('tasks.editor.update');
     Route::get('tasks/{id}/show',[\App\Http\Controllers\TaskController::class,'show'])->name('tasks.show');
-    Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('tasks.destroy');
+    Route::get('tasks/{id}/archive',[\App\Http\Controllers\TaskController::class,'destroy'])->name('tasks.destroy');
     Route::get('tasks/export/create',[\App\Http\Controllers\TaskController::class,'ExportStore'])->name('tasks.export');
     Route::POST('tasks/export/excel',[\App\Http\Controllers\TaskController::class,'excel'])->name('tasks.excel');
     Route::get('tasks/archive/all',[\App\Http\Controllers\TaskController::class,'archive'])->name('tasks.archive');
     Route::get('tasks/{id}/trash',[\App\Http\Controllers\TaskController::class,'restore'])->name('tasks.restore');
-    Route::get('tasks/restore/trash',[\App\Http\Controllers\TaskController::class,'restore'])->name('tasks.restore');
+    Route::get('tasks/{id}/delete',[\App\Http\Controllers\TaskController::class,'delete'])->name('tasks.delete');
     Route::get('tasks/all/search',[\App\Http\Controllers\TaskController::class,'SearchTasks'])->name('tasks.search');
     Route::get('tasks/{id}/display',[\App\Http\Controllers\TaskController::class,'display'])->name('tasks.display');
 

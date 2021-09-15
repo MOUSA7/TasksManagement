@@ -4,6 +4,8 @@
     <div class="row mb-2">
         <div class="col-sm-6">
             <h1>Tasks Management</h1>
+            <br>
+            <a href="{{ URL::previous() }}" class="btn btn-default" style="margin-top: -8px;"> <i class="fa fa-arrow-left"></i> Go Back</a>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

@@ -34,6 +34,10 @@ class TaskController extends Controller
     }
 
     public function store(Request $request,$slug){
+         $this->validate($request,[
+            'name'=>'required | unique:tasks,name',
+//             'place' => 'required'
+        ]);
 
         $cat = Category::where('slug',$slug)->first();
 
@@ -41,7 +45,7 @@ class TaskController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'time' => $request->time,
-            'date' => \Carbon\Carbon::make($request->date),
+            'date' => $request->date,
             'category_id' => $cat->id,
            'status'=>$request->status,
            'place' =>$request->place,
@@ -81,7 +85,7 @@ class TaskController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'time' => $request->time,
-            'date' => Carbon::make($request->date),
+            'date' => $request->date,
             'category_id' => $task->category->id,
             'status'=>$request->status,
             'place' =>$request->place == "other"? $request->place2 : $request->place ,
@@ -176,9 +180,15 @@ class TaskController extends Controller
     }
 
     public function restore($id){
-        $trash = Task::onlyTrashed()->findOrFail($id)->restore();
+        Task::onlyTrashed()->findOrFail($id)->restore();
         return redirect()->back();
     }
+
+    public function delete($id){
+       $task =  Task::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->back();
+    }
+
     public function SearchTasks(Request $request){
         $keyword = $request->get('keyword');
         $tasks = Task::where('name','like','%'.$keyword.'%')->take(4)->get();

@@ -90,7 +90,7 @@
 {{--        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>--}}
 {{--    </div>--}}
     @php
-        $tasks= \App\Models\Task::where('date',\Carbon\Carbon::today())->get();
+        $tasks= \App\Models\Task::where('date',\Carbon\Carbon::today()->format('m/d/Y'))->get();
     @endphp
     @if($tasks->count())
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -114,12 +114,12 @@
                         <tbody>
                         @php
                             //$tasks = $category->tasks->sortBy('id')->values()->all();
-                              $tasks = \App\Models\Task::where('date',\Carbon\Carbon::today())->OrderBy('id','desc')->get();
+                              $tasks = \App\Models\Task::where('date',\Carbon\Carbon::today()->format('m/d/Y'))->OrderBy('id','asc')->get();
                         @endphp
-                        @forelse($tasks as $task)
-                            @if(\Carbon\Carbon::make($task->date)  == \Carbon\Carbon::today())
+                        @forelse($tasks as $key=>$task)
+                            @if($task->date  == \Carbon\Carbon::today()->format('m/d/Y'))
                                 <tr>
-                                    <th scope="row">{{$task->id}}</th>
+                                    <th scope="row">{{$key+1}}</th>
                                     <td>
                                         <a href="{{route('admin.tasks.edit',$task->id)}}">{{$task->name}}</a>
                                     </td>

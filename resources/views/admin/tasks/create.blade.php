@@ -90,11 +90,16 @@
                                     <div class="col-sm-6 ">
                                         <div class="form-group" id="select">
                                             <label for="">Charge Place : </label>
-                                            <select name="place" id="place"  class="form-control" >
-                                                @foreach($charge_place as $place)
+                                            <select name="place" id="place"  class="form-control @error('place') is-invalid @enderror" >
+                                            @foreach($charge_place as $place)
                                                     <option  value="{{$place}}">{{$place}}</option>
                                                 @endforeach
                                             </select>
+                                            @error('place')
+                                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                        </span>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group" id="other">

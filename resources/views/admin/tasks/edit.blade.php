@@ -4,6 +4,8 @@
     <div class="row mb-2">
         <div class="col-sm-6">
             <h1>Tasks Management</h1>
+            <br>
+            <a href="{{ URL::previous() }}" class="btn btn-default" style="margin-top: -8px;"> <i class="fa fa-arrow-left"></i> Go Back</a>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -184,7 +186,7 @@
                                         <div class="form-group">
                                             <label>Date:</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                <input type="text" name="date" value="{{\Carbon\Carbon::parse($task->date)->format('d/m/Y')}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                                <input type="text" name="date" value="{{$task->date}}" class="form-control datetimepicker-input" data-target="#reservationdate"/>
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -249,3 +251,4 @@
         display: none;
     }
 </style>
+
