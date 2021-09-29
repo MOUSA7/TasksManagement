@@ -61,7 +61,7 @@
                         </td>
                         @if($task->date !=null || $task->arrive_time)
                         @if(\Carbon\Carbon::parse($task->date)->format('d/m/Y')  >= \Carbon\Carbon::now()->subDays(2))
-                            <td class="alert-warning">{{\Carbon\Carbon::parse($task->date ?$task->date : "Empty")->format('d/m/Y')}}</td>
+                            <td class="alert-warning">{{\Carbon\Carbon::parse($task->date ?$task->date : $task->created_at)->format('d/m/Y')}}</td>
                         @else
                             <td>{{\Carbon\Carbon::parse($task->date ?$task->date : $task->arrive_time)->format('d/m/Y')}}</td>
                         @endif
